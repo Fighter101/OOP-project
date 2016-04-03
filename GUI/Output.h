@@ -37,6 +37,10 @@ public:
 	void DrawXNOR2(GraphicsInfo r_GfxInfo, bool selected = false);
 	void DrawXOR3(GraphicsInfo r_GfxInfo, bool selected = false);
 	void DrawXNOR3(GraphicsInfo r_GfxInfo, bool selected = false);
+	void DrawBuffer(GraphicsInfo r_GfxInfo, bool selected , bool invert ) const;
+	void DrawBuffer(GraphicsInfo r_GfxInfo, bool selected = false);
+	void DrawInverter(GraphicsInfo r_GfxInfo, bool selected = false);
+	void DrawSwitch(GraphicsInfo r_GfxInfo);
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 
 	// Draws Connection
