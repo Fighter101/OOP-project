@@ -40,7 +40,7 @@ public:
 	void DrawBuffer(GraphicsInfo r_GfxInfo, bool selected , bool invert ) const;
 	void DrawBuffer(GraphicsInfo r_GfxInfo, bool selected = false);
 	void DrawInverter(GraphicsInfo r_GfxInfo, bool selected = false);
-	void DrawSwitch(GraphicsInfo r_GfxInfo);
+	void DrawSwitch(GraphicsInfo r_GfxInfo,bool=false);
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 
 	// Draws Connection

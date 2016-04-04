@@ -370,6 +370,64 @@ void Output::DrawXNOR3(GraphicsInfo r_GfxInfo, bool selected)
 	DrawXOR(r_GfxInfo, selected,true,true);
 }
 
+void Output::DrawBuffer(GraphicsInfo r_GfxInfo, bool selected, bool invert) const
+{
+	r_GfxInfo.x2 = r_GfxInfo.x1 + 15;
+	r_GfxInfo.x1 -= 15;
+	r_GfxInfo.y2 = r_GfxInfo.y1;
+	r_GfxInfo.y1 -= 15;
+	int raduis = 6;
+	pWind->SetPen(BLACK, 3);
+	pWind->SetBrush(SKYBLUE);
+	if(selected)
+		pWind->DrawTriangle(r_GfxInfo.x1, r_GfxInfo.y1, r_GfxInfo.x1, r_GfxInfo.y2 + 15, r_GfxInfo.x2, r_GfxInfo.y2,FILLED);
+	else pWind->DrawTriangle(r_GfxInfo.x1, r_GfxInfo.y1, r_GfxInfo.x1, r_GfxInfo.y2 + 15, r_GfxInfo.x2, r_GfxInfo.y2,FRAME);
+	if (invert)
+	{
+		if (selected)
+			pWind->DrawCircle(r_GfxInfo.x2 + raduis-2, r_GfxInfo.y2, raduis, FILLED);
+		else 
+			pWind->DrawCircle(r_GfxInfo.x2 + raduis-2, r_GfxInfo.y2, raduis, FRAME);
+		pWind->DrawLine(r_GfxInfo.x2 + raduis+1, r_GfxInfo.y2, r_GfxInfo.x2 + raduis + 11, r_GfxInfo.y2);
+	}
+	else 
+		pWind->DrawLine(r_GfxInfo.x2 + -1, r_GfxInfo.y2, r_GfxInfo.x2+9, r_GfxInfo.y2);
+	pWind->DrawLine(r_GfxInfo.x1 - 10, r_GfxInfo.y2, r_GfxInfo.x1, r_GfxInfo.y2);
+}
+
+void Output::DrawBuffer(GraphicsInfo r_GfxInfo, bool selected)
+{
+	DrawBuffer(r_GfxInfo, selected, false);
+}
+
+void Output::DrawInverter(GraphicsInfo r_GfxInfo, bool selected)
+{
+	DrawBuffer(r_GfxInfo, selected, true);
+}
+
+void Output::DrawSwitch(GraphicsInfo r_GfxInfo,bool selected)
+{
+	r_GfxInfo.x2 = r_GfxInfo.x1 + 20;
+	r_GfxInfo.x1 -= 20;
+	r_GfxInfo.y2 = r_GfxInfo.y1 + 10;
+	r_GfxInfo.y1 -= 10;
+	pWind->SetPen(BLACK, 3);
+	pWind->DrawRectangle(r_GfxInfo.x1, r_GfxInfo.y1, r_GfxInfo.x2, r_GfxInfo.y2,FRAME);
+	pWind->DrawLine(r_GfxInfo.x1 + 10, r_GfxInfo.y1+1, r_GfxInfo.x1 + 10, r_GfxInfo.y2-2);
+	pWind->SetBrush(GREY);
+	pWind->DrawRectangle(r_GfxInfo.x1, r_GfxInfo.y1, r_GfxInfo.x1 + 13, r_GfxInfo.y2);
+	if (selected)
+	{
+		pWind->SetBrush(SKYBLUE);
+		pWind->DrawRectangle(r_GfxInfo.x1, r_GfxInfo.y1, r_GfxInfo.x2, r_GfxInfo.y2, FILLED);
+		pWind->SetPen(STEELBLUE, 3);
+		pWind->SetBrush(STEELBLUE);
+		pWind->DrawRectangle(r_GfxInfo.x2 - 10, r_GfxInfo.y1+3, r_GfxInfo.x2-3, r_GfxInfo.y2-3,FILLED);
+		pWind->SetPen(BLACK, 3);
+		pWind->DrawLine(r_GfxInfo.x2-10, r_GfxInfo.y1 + 1, r_GfxInfo.x2-10, r_GfxInfo.y2 - 2);
+	}
+}
+
 //TODO: Add similar functions to draw all components
 
 

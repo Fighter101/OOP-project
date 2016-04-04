@@ -110,17 +110,27 @@ int main()
 	GfxInfo.x1 = 500;	GfxInfo.y1 = 300;
 	pOut->DrawXNOR3(GfxInfo, true);
 	pIn->GetPointClicked(x,y);	//Wait for any click
-	pOut->ClearDrawingArea();
+	//pOut->ClearDrawingArea();
 
 	/// 2.5- Buffer and Inverter Gates test
 	pOut->PrintMsg("Drawing Buffer and Inverter Gates, Normal and Highlighted,  Click to continue");
-	
+	GfxInfo.x1 = 580; GfxInfo.y1 = 120;
+	pOut->DrawBuffer(GfxInfo);
+	GfxInfo.x1 = 580; GfxInfo.y1 = 180;
+	pOut->DrawBuffer(GfxInfo,true);
+	GfxInfo.x1 = 640; GfxInfo.y1 = 120;
+	pOut->DrawInverter(GfxInfo);
+	GfxInfo.x1 = 640; GfxInfo.y1 = 180;
+	pOut->DrawInverter(GfxInfo,true);
 	///TODO: Add code to draw Buffer and Inverter Gates, Normal and Highlighted for each
 
 	pIn->GetPointClicked(x,y);	//Wait for any click
-	pOut->ClearDrawingArea();
-
-
+	//pOut->ClearDrawingArea();
+	GfxInfo.x1 = 580; GfxInfo.y1 = 240;
+	pOut->DrawSwitch(GfxInfo);
+	pIn->GetPointClicked(x, y);
+	GfxInfo.x1 = 640; GfxInfo.y1 = 240;
+	pOut->DrawSwitch(GfxInfo,true);
 	/// 2.6- AND3, NOR3, and XOR3 Gates test
 	pOut->PrintMsg("Drawing 3-input AND, NOR, XOR Gates, Normal and Highlighted,  Click to continue");
 	
