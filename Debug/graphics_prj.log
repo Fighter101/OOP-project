@@ -1,2 +1,4 @@
 ﻿  Output.cpp
+  LINK : .\Debug/graphics_prj.exe not found or not built by the last incremental link; performing full link
+auxil.obj : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/SAFESEH' specification
   graphics_prj.vcxproj -> G:\OOP\OOP Project\.\Debug\graphics_prj.exe

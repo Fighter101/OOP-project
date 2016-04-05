@@ -130,10 +130,22 @@ int main()
 	pOut->DrawSwitch(GfxInfo);
 	pIn->GetPointClicked(x, y);
 	GfxInfo.x1 = 640; GfxInfo.y1 = 240;
-	pOut->DrawSwitch(GfxInfo,true);
+	pOut->DrawSwitch(GfxInfo, true, false);
+	GfxInfo.x1 = 580; GfxInfo.y1 = 300;
+	pOut->DrawSwitch(GfxInfo, false, true);
+	GfxInfo.x1 = 640; GfxInfo.y1 = 300;
+	pOut->DrawSwitch(GfxInfo, true, true);
 	/// 2.6- AND3, NOR3, and XOR3 Gates test
 	pOut->PrintMsg("Drawing 3-input AND, NOR, XOR Gates, Normal and Highlighted,  Click to continue");
-	
+	GfxInfo.x1 = 750;	GfxInfo.y1 = 120;
+	pOut->DrawLED(GfxInfo);
+	GfxInfo.x1 = 750;	GfxInfo.y1 = 180;
+	pOut->DrawLED(GfxInfo, true);
+	GfxInfo.x1 = 830;	GfxInfo.y1 = 120;
+	pOut->DrawLED(GfxInfo, false, true);
+	GfxInfo.x1 = 830;	GfxInfo.y1 = 180;
+	pOut->DrawLED(GfxInfo, true, true);
+	pIn->GetPointClicked(x, y);	//Wait for any click
 	///TODO: Add code to draw 3-input AND, NOR, and XOR Gates, Normal and Highlighted for each
 
 	pIn->GetPointClicked(x,y);	//Wait for any click
