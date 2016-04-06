@@ -438,30 +438,24 @@ void Output::DrawSwitch(GraphicsInfo r_GfxInfo, bool ON, bool selected)
 void Output::DrawLED(GraphicsInfo r_GfxInfo, bool selected, bool ON) const
 {
 	pWind->SetPen(BLACK, 3);
-	r_GfxInfo.x2 = r_GfxInfo.x1 - 30;
-	r_GfxInfo.y2 = r_GfxInfo.y1 - 10;
 	int raduis = 20;
+	r_GfxInfo.x2 = r_GfxInfo.x1 - 1.75*raduis+3;
+	r_GfxInfo.y2 = r_GfxInfo.y1 - 0.5*raduis;
 	int dist = 10 * tan(22.5);
 	if (ON)
 	{
 		pWind->SetBrush(LIGHTGOLDENRODYELLOW);
-		//pWind->DrawCircle(r_GfxInfo.x1, r_GfxInfo.y1, raduis, FILLED);
-		//pWind->DrawArc(r_GfxInfo.x1 - raduis - dist + 1, r_GfxInfo.y1 - raduis + 2, r_GfxInfo.x1 + raduis + 1, r_GfxInfo.y1 + raduis - 2, 270 - 45, 90 + 45,FILLED);
-		pWind->DrawCircle(r_GfxInfo.x1 - dist + 4, r_GfxInfo.y1, raduis, FILLED);
+		pWind->DrawCircle(r_GfxInfo.x1 - dist + 2, r_GfxInfo.y1, raduis, FILLED);
 	}
 	else if (selected)
 	{
 		pWind->SetBrush(SKYBLUE);
-		//pWind->DrawCircle(r_GfxInfo.x1, r_GfxInfo.y1, raduis, FILLED);
-		//pWind->DrawArc(r_GfxInfo.x1 - raduis - dist + 1, r_GfxInfo.y1 - raduis + 2, r_GfxInfo.x1 + raduis + 1, r_GfxInfo.y1 + raduis - 2, 270 - 45, 90 + 45,FILLED);
-		pWind->DrawCircle(r_GfxInfo.x1 - dist + 4, r_GfxInfo.y1, raduis, FILLED);
+		pWind->DrawCircle(r_GfxInfo.x1 - dist+2 , r_GfxInfo.y1, raduis, FILLED);
 	}
-//	else pWind->DrawCircle(r_GfxInfo.x1, r_GfxInfo.y1, raduis, FRAME);
-	//pWind->DrawArc(r_GfxInfo.x1 - raduis - dist+1, r_GfxInfo.y1-raduis+2, r_GfxInfo.x1 + raduis+1, r_GfxInfo.y1 + raduis-2, 270-45, 90+45);
-	pWind->DrawCircle(r_GfxInfo.x1 - dist+4, r_GfxInfo.y1, raduis, FRAME);
-	pWind->DrawLine(r_GfxInfo.x2, r_GfxInfo.y2, r_GfxInfo.x2, r_GfxInfo.y1 + 10);
-	pWind->DrawLine(r_GfxInfo.x2, r_GfxInfo.y2, r_GfxInfo.x2 + 15, r_GfxInfo.y2);
-	pWind->DrawLine(r_GfxInfo.x2, r_GfxInfo.y1 + 10, r_GfxInfo.x2 + 15, r_GfxInfo.y1 + 10);
+	pWind->DrawCircle(r_GfxInfo.x1 - dist+2, r_GfxInfo.y1, raduis, FRAME);
+	pWind->DrawLine(r_GfxInfo.x2, r_GfxInfo.y2, r_GfxInfo.x2, r_GfxInfo.y1 + 0.5*raduis);
+	pWind->DrawLine(r_GfxInfo.x2, r_GfxInfo.y2, r_GfxInfo.x2 + 0.75*raduis, r_GfxInfo.y2);
+	pWind->DrawLine(r_GfxInfo.x2, r_GfxInfo.y1 + 0.5*raduis, r_GfxInfo.x2 + 0.75*raduis, r_GfxInfo.y1 + 0.5*raduis);
 	pWind->DrawLine(r_GfxInfo.x2 - 15, r_GfxInfo.y1, r_GfxInfo.x2, r_GfxInfo.y1);
 	if (selected && !ON)
 	{
@@ -473,7 +467,7 @@ void Output::DrawLED(GraphicsInfo r_GfxInfo, bool selected, bool ON) const
 		pWind->SetBrush(BLACK);
 		pWind->SetPen(BLACK, 3);
 	}
-	pWind->DrawRectangle(r_GfxInfo.x2 + 2, r_GfxInfo.y2 + 2, r_GfxInfo.x2 + 15, r_GfxInfo.y1 + 9);
+	pWind->DrawRectangle(r_GfxInfo.x2 + 2, r_GfxInfo.y2 + 2, r_GfxInfo.x2 + 0.75*raduis, r_GfxInfo.y1 + 0.5*raduis-1);
 }
 
 //TODO: Add similar functions to draw all components

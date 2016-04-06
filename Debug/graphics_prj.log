@@ -1,3 +1,9 @@
 ﻿  Output.cpp
+g:\oop\oop project\gui\output.cpp(442): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+g:\oop\oop project\gui\output.cpp(443): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
 g:\oop\oop project\gui\output.cpp(444): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+g:\oop\oop project\gui\output.cpp(456): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+g:\oop\oop project\gui\output.cpp(457): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+g:\oop\oop project\gui\output.cpp(458): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+g:\oop\oop project\gui\output.cpp(470): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
   graphics_prj.vcxproj -> G:\OOP\OOP Project\.\Debug\graphics_prj.exe
