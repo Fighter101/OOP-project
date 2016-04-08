@@ -29,13 +29,16 @@ struct UI_Info	//User Interface Info.
 
 	//This should be calculated accurately because it will be used later to create connections between gates
 	//For now, we will assume that rect width = 50 and height = 50
-	/*static*/ const int	AllGateDimensions = 40, //Dimensions of any gate
+	static const int	AllGateDimensions = 40, //Dimensions of any gate
 		InverterDimensions = 6,   //Dimensions for the inverter circle
 		ConnectionDimensions = 10,
 		BufferDimensions = 30,
 		SwitchHeight = 20,
 		SwitchWidth = 40,
-		LedDimensions = 35;
+		LedDimensions = 35,
+		GridHeight = 150,
+		GridWidth = 200,
+		PixelDenisty = 5;
 	
 }UI;	//create a single global object UI
 

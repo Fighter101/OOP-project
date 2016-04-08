@@ -7,6 +7,7 @@ class Output	//The application manager should have a pointer to this class
 {
 private:
 	window* pWind;	//Pointer to the Graphics Window
+	Cell **Components;
 public:
 	Output(); // Performs the Window Initialization
 	Input* CreateInput() const; //creates a pointer to the Input object

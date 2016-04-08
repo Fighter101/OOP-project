@@ -105,7 +105,13 @@ struct GraphicsInfo
 {
 	int x1,y1, x2, y2;
 };
-
+enum Cell
+{
+	Empty = 0,
+	Line = 1,
+	Connection = 2,
+	Gate = 3
+};
 #ifndef NULL
 #define NULL 0
 #endif

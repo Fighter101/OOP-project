@@ -19,7 +19,18 @@ Output::Output()
 
 	CreateDesignToolBar();	//Create the desgin toolbar
 	CreateStatusBar();		//Create Status bar
-
+	Components = new Cell*[UI.GridWidth];
+	for (int i = 0; i < UI.GridWidth; i++)
+	{
+		Components[i] = new Cell[UI.GridHeight];
+	}
+	for (int i = 0; i < UI.GridWidth; i++)
+	{
+		for (int j = 0; j < UI.GridHeight; j++)
+		{
+			Components[i][j] = Empty;
+		}
+	}
 }
 
 Input* Output::CreateInput() const
@@ -176,6 +187,7 @@ void Output::DrawAND(GraphicsInfo r_GfxInfo, bool selected, bool invert, bool co
 			pWind->DrawLine(r_GfxInfo.x1 - UI.ConnectionDimensions, (r_GfxInfo.y1 + i* dist), r_GfxInfo.x1, (r_GfxInfo.y1) + i*dist);
 		}
 	}
+
 }
 
 void Output::DrawAND2(GraphicsInfo r_GfxInfo, bool selected)
