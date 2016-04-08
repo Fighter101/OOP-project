@@ -1,7 +1,8 @@
 #pragma once
-#include "..\Defs.h"
+//#include "..\Defs.h"
 #include "Input.h"
 #include<cmath>
+#include"UI_Info.h";
 class Output	//The application manager should have a pointer to this class
 {
 private:
