@@ -158,6 +158,10 @@ void Output::DrawAND(GraphicsInfo r_GfxInfo, bool selected, bool invert, bool co
 	{
 		pWind->SetPen(BLACK, 3);
 		pWind->DrawLine(r_GfxInfo.x2 + raduis - 9, r_GfxInfo.y1 + raduis - 9, r_GfxInfo.x2 + raduis + 10, r_GfxInfo.y1 + raduis - 9);
+		for (int j = 0; j < UI.ConnectionDimensions / UI.PixelDenisty; j++)
+		{
+			Components[(r_GfxInfo.x2 + raduis - 9) / UI.PixelDenisty + j][(r_GfxInfo.y1 + raduis - 9)/ UI.PixelDenisty] = Connection;
+		}
 	}
 	if (invert)
 	{
@@ -169,6 +173,10 @@ void Output::DrawAND(GraphicsInfo r_GfxInfo, bool selected, bool invert, bool co
 			pWind->DrawCircle(x_Center - 1, y_Center, Raduis);
 		else pWind->DrawCircle(x_Center - 1, y_Center, Raduis, FRAME);
 		pWind->DrawLine(x_Center - 1 + Raduis, y_Center, x_Center + Raduis + 10, y_Center);
+		for (int j = 0; j < UI.ConnectionDimensions / UI.PixelDenisty; j++)
+		{
+			Components[(x_Center - 1 + Raduis) / UI.PixelDenisty + j][y_Center/ UI.PixelDenisty] = Connection;
+		}
 	}
 	pWind->SetPen(BLACK, 3);
 	if (connections)
@@ -177,6 +185,10 @@ void Output::DrawAND(GraphicsInfo r_GfxInfo, bool selected, bool invert, bool co
 		for (size_t i = 1; i <= 3; i++)
 		{
 			pWind->DrawLine(r_GfxInfo.x1 - UI.ConnectionDimensions, (r_GfxInfo.y1 + i* dist), r_GfxInfo.x1, (r_GfxInfo.y1) + i* dist);
+			for (int j = 0; j < UI.ConnectionDimensions / UI.PixelDenisty; j++)
+			{
+				Components[(r_GfxInfo.x1 - UI.ConnectionDimensions) / UI.PixelDenisty + j][(r_GfxInfo.y1 + i* dist)] = Connection;
+			}
 		}
 	}
 	else
@@ -185,9 +197,19 @@ void Output::DrawAND(GraphicsInfo r_GfxInfo, bool selected, bool invert, bool co
 		for (size_t i = 1; i <= 2; i++)
 		{
 			pWind->DrawLine(r_GfxInfo.x1 - UI.ConnectionDimensions, (r_GfxInfo.y1 + i* dist), r_GfxInfo.x1, (r_GfxInfo.y1) + i*dist);
+			for (int j = 0; j < UI.ConnectionDimensions/UI.PixelDenisty; j++)
+			{
+				Components[(r_GfxInfo.x1 - UI.ConnectionDimensions) / UI.PixelDenisty + j][(r_GfxInfo.y1 + i* dist)] = Connection;
+			}
 		}
 	}
-
+	for (int i = 0; i < UI.AllGateDimensions/UI.PixelDenisty; i++)
+	{
+		for (int j = 0; j < UI.AllGateDimensions/UI.PixelDenisty; j++)
+		{
+			Components[r_GfxInfo.x1 / UI.PixelDenisty + i][r_GfxInfo.y1 / UI.PixelDenisty + j] = Gate;
+		}
+	}
 }
 
 void Output::DrawAND2(GraphicsInfo r_GfxInfo, bool selected)
