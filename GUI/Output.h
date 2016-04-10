@@ -1,13 +1,15 @@
 #pragma once
 //#include "..\Defs.h"
 #include "Input.h"
-#include<cmath>
+#include<cmath>4
+#include<fstream>
 #include"UI_Info.h";
 class Output	//The application manager should have a pointer to this class
 {
 private:
 	window* pWind;	//Pointer to the Graphics Window
 	Cell **Components;
+	void Register(GraphicsInfo r_GfxInfo, Cell type)	const;//this is a utility function given the start and the end of a shape and its type and it registers it
 public:
 	Output(); // Performs the Window Initialization
 	Input* CreateInput() const; //creates a pointer to the Input object
@@ -21,7 +23,7 @@ public:
 	void ClearDrawingArea() const;	//Clears the drawing area
 
 	window* CreateWind(int wd, int h, int x, int y) const; //Creates user interface window
-
+	void print();
 	
 	// Draws 2-input AND gate
 	void DrawAND(GraphicsInfo r_GfxInfo, bool selected = false, bool invert = false, bool connections = false) const;

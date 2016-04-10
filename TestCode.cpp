@@ -63,7 +63,7 @@ int main()
 	GfxInfo.x1 = 180;	GfxInfo.y1 = 300;
 	pOut->DrawNAND3(GfxInfo, true);
 	///TODO: Add code to draw 2-input NAND gate, Normal and Highlighted
-
+	pOut->print();
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	//pOut->ClearDrawingArea();
 
