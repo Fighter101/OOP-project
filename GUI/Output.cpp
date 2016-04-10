@@ -46,6 +46,7 @@ Output::Output()
 			Components[i][j] = Empty;
 		}
 	}
+	out.open("output.txt");
 }
 
 Input* Output::CreateInput() const
@@ -66,16 +67,8 @@ window* Output::CreateWind(int wd, int h, int x, int y) const
 }
 void Output::print()
 {
-	int counter=0;
-	ofstream out("output.txt");
-	for (int i = 0; i < UI.GridWidth; i++)
-	{
-		out << i<<" ";
-	}
-	out << endl;
 	for (int i = 0; i < UI.GridHeight; i++)
 	{
-		out << ++counter<< ' ';
 		for (int j = 0; j < UI.GridWidth; j++)
 		{
 			switch (Components[i][j])
@@ -477,7 +470,11 @@ void Output::DrawBuffer(GraphicsInfo r_GfxInfo, bool selected, bool invert) cons
 		Register(GraphicsInfo(r_GfxInfo.x2 + raduis * 2, r_GfxInfo.y1, r_GfxInfo.x2 + raduis * 2 + UI.ConnectionDimensions, r_GfxInfo.y2 + UI.BufferDimensions / 2), Connection);
 	}
 	else
-		pWind->DrawLine(r_GfxInfo.x2 + -1, r_GfxInfo.y2, r_GfxInfo.x2 + UI.ConnectionDimensions-1, r_GfxInfo.y2);
+	{
+		pWind->DrawLine(r_GfxInfo.x2 + -1, r_GfxInfo.y2, r_GfxInfo.x2 + UI.ConnectionDimensions - 1, r_GfxInfo.y2);
+		Register(GraphicsInfo(r_GfxInfo.x2, r_GfxInfo.y1, r_GfxInfo.x2 + UI.ConnectionDimensions, r_GfxInfo.y1 + UI.BufferDimensions), Connection);
+	}
+
 	pWind->DrawLine(r_GfxInfo.x1 - UI.ConnectionDimensions, r_GfxInfo.y2, r_GfxInfo.x1, r_GfxInfo.y2);
 	Register(GraphicsInfo(r_GfxInfo.x1, r_GfxInfo.y1, r_GfxInfo.x2 , r_GfxInfo.y2+UI.BufferDimensions/2), Gate);
 	Register(GraphicsInfo(r_GfxInfo.x1 - UI.ConnectionDimensions, r_GfxInfo.y1, r_GfxInfo.x1, r_GfxInfo.y2 + UI.BufferDimensions / 2), Connection);
@@ -523,6 +520,8 @@ void Output::DrawSwitch(GraphicsInfo r_GfxInfo, bool ON, bool selected)
 	}
 	pWind->SetPen(BLACK, 3);
 	pWind->DrawLine(r_GfxInfo.x2, (r_GfxInfo.y2 + r_GfxInfo.y1) / 2, r_GfxInfo.x2 + UI.ConnectionDimensions, (r_GfxInfo.y2 + r_GfxInfo.y1) / 2);
+	Register(GraphicsInfo(r_GfxInfo.x1, r_GfxInfo.y1, r_GfxInfo.x2, r_GfxInfo.y2), Gate);
+	Register(GraphicsInfo(r_GfxInfo.x2, r_GfxInfo.y1, r_GfxInfo.x2 + UI.ConnectionDimensions, r_GfxInfo.y2), Connection);
 }
 
 void Output::DrawLED(GraphicsInfo r_GfxInfo, bool selected, bool ON) const
@@ -558,6 +557,8 @@ void Output::DrawLED(GraphicsInfo r_GfxInfo, bool selected, bool ON) const
 		pWind->SetPen(BLACK, 3);
 	}
 	pWind->DrawRectangle(r_GfxInfo.x2 + 2, r_GfxInfo.y2 + 2, r_GfxInfo.x2 + 0.75*raduis, r_GfxInfo.y1 + 0.5*raduis-1);
+	Register(GraphicsInfo(r_GfxInfo.x2, r_GfxInfo.y1 - raduis, r_GfxInfo.x2 + UI.LedDimensions, r_GfxInfo.y1 + raduis), Gate);
+	Register(GraphicsInfo(r_GfxInfo.x2+UI.LedDimensions , r_GfxInfo.y1 - raduis, r_GfxInfo.x2+UI.LedDimensions + UI.ConnectionDimensions, r_GfxInfo.y1 + raduis), Connection);
 }
 
 //TODO: Add similar functions to draw all components

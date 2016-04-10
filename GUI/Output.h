@@ -11,6 +11,7 @@ private:
 	window* pWind;	//Pointer to the Graphics Window
 	Cell **Components;
 	void Register(GraphicsInfo r_GfxInfo, Cell type)	const;//this is a utility function given the start and the end of a shape and its type and it registers it
+	ofstream out;
 public:
 	Output(); // Performs the Window Initialization
 	Input* CreateInput() const; //creates a pointer to the Input object
