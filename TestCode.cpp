@@ -41,7 +41,6 @@ int main()
 	//Drawing Normal AND2 gate
 	GfxInfo.x1 = 100;	GfxInfo.y1 = 120; 
 	pOut->DrawAND2(GfxInfo);
-
 	//Drawing Highlighted AND2 gate
 	GfxInfo.x1 = 180;	GfxInfo.y1 = 120;
 	pOut->DrawAND2(GfxInfo, true);
@@ -63,7 +62,6 @@ int main()
 	GfxInfo.x1 = 180;	GfxInfo.y1 = 300;
 	pOut->DrawNAND3(GfxInfo, true);
 	///TODO: Add code to draw 2-input NAND gate, Normal and Highlighted
-	pOut->print();
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	//pOut->ClearDrawingArea();
 
@@ -111,7 +109,7 @@ int main()
 	pOut->DrawXNOR3(GfxInfo, true);
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	//pOut->ClearDrawingArea();
-
+	pOut->print();
 	/// 2.5- Buffer and Inverter Gates test
 	pOut->PrintMsg("Drawing Buffer and Inverter Gates, Normal and Highlighted,  Click to continue");
 	GfxInfo.x1 = 580; GfxInfo.y1 = 120;

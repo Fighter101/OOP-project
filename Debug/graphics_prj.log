@@ -1,13 +1,12 @@
 ﻿  Output.cpp
-e:\git\oop-project\gui\output.h(4): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-e:\git\oop-project\gui\output.h(6): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+e:\git\oop-project\gui\output.h(7): warning C4067: unexpected tokens following preprocessor directive - expected a newline
 e:\git\oop-project\gui\output.cpp(7): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
 e:\git\oop-project\gui\output.cpp(8): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-e:\git\oop-project\gui\output.cpp(511): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-e:\git\oop-project\gui\output.cpp(512): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
-e:\git\oop-project\gui\output.cpp(513): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
-e:\git\oop-project\gui\output.cpp(525): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-e:\git\oop-project\gui\output.cpp(526): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-e:\git\oop-project\gui\output.cpp(527): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
-e:\git\oop-project\gui\output.cpp(539): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+e:\git\oop-project\gui\output.cpp(528): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+e:\git\oop-project\gui\output.cpp(529): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+e:\git\oop-project\gui\output.cpp(530): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+e:\git\oop-project\gui\output.cpp(542): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+e:\git\oop-project\gui\output.cpp(543): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+e:\git\oop-project\gui\output.cpp(544): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+e:\git\oop-project\gui\output.cpp(556): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
   graphics_prj.vcxproj -> E:\GIT\OOP-project\.\Debug\graphics_prj.exe
