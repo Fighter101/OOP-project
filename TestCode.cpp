@@ -148,7 +148,7 @@ int main()
 	pOut->print();
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->ClearDrawingArea();
-
+	pOut->connect(GraphicsInfo(100, 400, 250, 500));
 	/// 2.7- Switch and LED test
 	pOut->PrintMsg("Drawing Switch and LED, Normal and Highlighted,  Click to continue");
 	

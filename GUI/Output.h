@@ -4,6 +4,7 @@
 #include<cmath>
 #include<fstream>
 #include<iostream>
+#include<queue>	
 #include"UI_Info.h";
 class Output	//The application manager should have a pointer to this class
 {
@@ -12,11 +13,17 @@ private:
 	Cell **Components;
 	void Register(GraphicsInfo r_GfxInfo, Cell type)	const;//this is a utility function given the start and the end of a shape and its type and it registers it
 	ofstream out;
+	pair<int, int>**parent;
+	vector<pair<int, int> > points;
+	bool valid(int x, int y);
+	void BFS(GraphicsInfo r_GfxInfo);
+	void Getpoints(int x,int y);
+	void Drawconnection1();
 public:
 	Output(); // Performs the Window Initialization
 	Input* CreateInput() const; //creates a pointer to the Input object
 	void ChangeTitle(string Title) const;
-
+	bool connect(GraphicsInfo r_GfxInfo);
 	void CreateDesignToolBar() const;	//Tool bar of the design mode
 	void CreateSimulationToolBar() const;//Tool bar of the simulation mode
 	void CreateStatusBar() const;	//Create Status bar

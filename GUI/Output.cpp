@@ -15,6 +15,79 @@ void Output::Register(GraphicsInfo r_GfxInfo, Cell type) const
 	std::cout << r_GfxInfo.x2 << ' ' << r_GfxInfo.y2 <<" "<<(int)type<< endl;
 }
 
+bool Output::connect(GraphicsInfo r_GfxInfo)
+{
+	for (int i = 0; i < UI.GridHeight; i++)
+	{
+		for (int j = 0; j < UI.GridWidth; j++)
+		{
+			Components[i][j] = Empty;
+		}
+	}
+	parent = new pair<int, int>*[UI.GridHeight];
+	for (int i = 0; i < UI.GridHeight; i++)
+	{
+		parent[i] = new pair<int, int>[UI.GridWidth];
+		for (int j = 0; j < UI.GridWidth; j++)
+		{
+			parent[i][j] = pair<int, int>(-1, -1);
+		}
+	}
+	if ((Components[r_GfxInfo.y1 / 5][r_GfxInfo.x1 / 5] != Empty) ||( Components[r_GfxInfo.y2 / 5][r_GfxInfo.x2 / 5] != Empty))
+	return false;
+	BFS(GraphicsInfo(r_GfxInfo.x1 / UI.PixelDenisty, r_GfxInfo.y1 / UI.PixelDenisty, r_GfxInfo.x2 / UI.PixelDenisty, r_GfxInfo.y2 / UI.PixelDenisty));
+	if (parent[r_GfxInfo.y2 / 5][ r_GfxInfo.x2 / 5] == pair<int, int>(-1, -1))
+	return false;
+	Getpoints(r_GfxInfo.x2 / UI.PixelDenisty, r_GfxInfo.y2 / UI.PixelDenisty);
+	Drawconnection1();
+
+}
+
+bool Output::valid(int x, int y)
+{
+	return (x >= 0) && (y >= 0) && (x < UI.GridWidth) && (y < UI.GridHeight) && (Components[y][x] == Empty) && (parent[y][x].first == -1);
+}
+
+void Output::BFS(GraphicsInfo r_GfxInfo)
+{
+	int dx []= { 1,-1,0,0 };
+	int dy[] = { 0,0,1,-1 };
+	queue<pair<int, int> > myq;
+	myq.push(pair<int, int>(r_GfxInfo.x1, r_GfxInfo.y1));
+	parent[myq.front().second][myq.front().first] = pair<int,int>(-2,-2);
+	while (!myq.empty())
+	{
+		pair<int, int> parnt = myq.front();
+		myq.pop();
+		for (int i = 0; i < 4; i++)
+		{
+			if (valid(parnt.first + dx[i], parnt.second + dy[i]))
+			{
+				parent[parnt.second + dy[i]][parnt.first + dx[i]] = parnt;
+				myq.push(pair<int, int>(parnt.first + dx[i], parnt.second + dy[i]));
+			}
+		}
+	}
+
+}
+
+void Output::Getpoints(int x, int y)
+{
+	if (parent[y][x] == pair<int,int>(-2,-2))
+		return;
+	Getpoints(parent[y][x].first, parent[y][x].second);
+	points.push_back(pair<int, int>(x*5, y*5));
+}
+
+void Output::Drawconnection1()
+{
+	pWind->SetPen(BLACK, 3);
+	for (size_t i = 0; i < points.size()-1; i++)
+	{
+		pWind->DrawLine(points[i].first, points[i].second, points[i + 1].first, points[i + 1].second);
+	}
+}
+
 Output::Output()
 {
 	//Initialize user interface parameters
@@ -558,7 +631,7 @@ void Output::DrawLED(GraphicsInfo r_GfxInfo, bool selected, bool ON) const
 	}
 	pWind->DrawRectangle(r_GfxInfo.x2 + 2, r_GfxInfo.y2 + 2, r_GfxInfo.x2 + 0.75*raduis, r_GfxInfo.y1 + 0.5*raduis-1);
 	Register(GraphicsInfo(r_GfxInfo.x2, r_GfxInfo.y1 - raduis, r_GfxInfo.x2 + UI.LedDimensions, r_GfxInfo.y1 + raduis), Gate);
-	Register(GraphicsInfo(r_GfxInfo.x2+UI.LedDimensions , r_GfxInfo.y1 - raduis, r_GfxInfo.x2+UI.LedDimensions + UI.ConnectionDimensions, r_GfxInfo.y1 + raduis), Connection);
+	Register(GraphicsInfo(r_GfxInfo.x2-UI.ConnectionDimensions , r_GfxInfo.y1 - raduis, r_GfxInfo.x2, r_GfxInfo.y1 + raduis), Connection);
 }
 
 //TODO: Add similar functions to draw all components
