@@ -147,8 +147,9 @@ int main()
 	///TODO: Add code to draw 3-input AND, NOR, and XOR Gates, Normal and Highlighted for each
 	pOut->print();
 	pIn->GetPointClicked(x,y);	//Wait for any click
-	pOut->ClearDrawingArea();
-	pOut->connect(GraphicsInfo(100, 400, 250, 500));
+	//pOut->ClearDrawingArea();
+	if (!(pOut->connect(GraphicsInfo(10, 150, 450, 500))))
+	pOut->PrintMsg("Error");
 	/// 2.7- Switch and LED test
 	pOut->PrintMsg("Drawing Switch and LED, Normal and Highlighted,  Click to continue");
 	

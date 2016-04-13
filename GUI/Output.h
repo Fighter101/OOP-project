@@ -18,13 +18,15 @@ private:
 	bool valid(int x, int y);
 	void BFS(GraphicsInfo r_GfxInfo);
 	void Getpoints(int x,int y);
-	void Drawconnection1();
+	void Drawconnection();
+	//Auxillary functions to create the status bar
+	void DrawToolBar();
 public:
 	Output(); // Performs the Window Initialization
 	Input* CreateInput() const; //creates a pointer to the Input object
 	void ChangeTitle(string Title) const;
 	bool connect(GraphicsInfo r_GfxInfo);
-	void CreateDesignToolBar() const;	//Tool bar of the design mode
+	void CreateDesignToolBar();	//Tool bar of the design mode
 	void CreateSimulationToolBar() const;//Tool bar of the simulation mode
 	void CreateStatusBar() const;	//Create Status bar
 

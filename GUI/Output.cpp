@@ -17,13 +17,6 @@ void Output::Register(GraphicsInfo r_GfxInfo, Cell type) const
 
 bool Output::connect(GraphicsInfo r_GfxInfo)
 {
-	for (int i = 0; i < UI.GridHeight; i++)
-	{
-		for (int j = 0; j < UI.GridWidth; j++)
-		{
-			Components[i][j] = Empty;
-		}
-	}
 	parent = new pair<int, int>*[UI.GridHeight];
 	for (int i = 0; i < UI.GridHeight; i++)
 	{
@@ -39,7 +32,7 @@ bool Output::connect(GraphicsInfo r_GfxInfo)
 	if (parent[r_GfxInfo.y2 / 5][ r_GfxInfo.x2 / 5] == pair<int, int>(-1, -1))
 	return false;
 	Getpoints(r_GfxInfo.x2 / UI.PixelDenisty, r_GfxInfo.y2 / UI.PixelDenisty);
-	Drawconnection1();
+	Drawconnection();
 
 }
 
@@ -79,7 +72,7 @@ void Output::Getpoints(int x, int y)
 	points.push_back(pair<int, int>(x*5, y*5));
 }
 
-void Output::Drawconnection1()
+void Output::Drawconnection()
 {
 	pWind->SetPen(BLACK, 3);
 	for (size_t i = 0; i < points.size()-1; i++)
@@ -88,8 +81,90 @@ void Output::Drawconnection1()
 	}
 }
 
+void Output::DrawToolBar() 
+{
+	pWind->SetPen(BLACK, 5);
+	int begin = UI.width / 4, end = 3 * UI.width / 4;
+	pWind->DrawLine(begin, 0, begin, UI.ToolBarHeight);
+	pWind->DrawLine(end, 0, end, UI.ToolBarHeight);
+	pWind->DrawLine(begin, UI.ToolBarHeight, end, UI.ToolBarHeight);
+	int counter = 0;
+	pWind->SetBrush(BLACK);
+	pWind->SetPen(BLACK, 3);
+	//Code to Draw add + sign
+	pWind->DrawLine(begin + (UI.Margain+counter*UI.ToolItemWidth), UI.Margain + 20, begin + (UI.Margain + counter*UI.ToolItemWidth) + 40, UI.Margain + 20);
+	pWind->DrawLine(UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth+begin, UI.Margain, begin+UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth, UI.Margain + 40);
+	pWind->SetFont(30, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + 10, UI.ToolBarHeight - 30, "Add");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//code to draw connect sign
+	pWind->DrawCircle(begin + counter*UI.ToolItemWidth + UI.Margain, UI.Margain + 40, 6, FILLED);
+	pWind->DrawCircle(begin + counter*UI.ToolItemWidth+40 + UI.Margain, UI.Margain, 6, FILLED);
+	connect(GraphicsInfo(begin + counter*UI.ToolItemWidth + UI.Margain, UI.Margain + 40, begin + counter*UI.ToolItemWidth + 40 + UI.Margain, UI.Margain));
+	pWind->SetFont(15, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth-2 + UI.Margain, UI.ToolItemWidth , "Connect");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//Code to draw Undo Sign
+	pWind->DrawArc(begin + UI.ToolItemWidth*counter + UI.Margain, UI.Margain, begin + UI.ToolItemWidth*counter + UI.Margain + 40, UI.Margain + 40, 180, 90);
+	pWind->DrawTriangle(begin + UI.ToolItemWidth*counter + UI.Margain + 20, UI.Margain, begin + UI.ToolItemWidth*counter + 27 + UI.Margain, UI.Margain - 7, begin + UI.ToolItemWidth*counter + 27 + UI.Margain, UI.Margain + 17, FILLED);
+	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth - 4 + UI.Margain, UI.ToolItemWidth, "UNDO");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//Code to draw the redo sign
+	pWind->DrawArc(begin + UI.ToolItemWidth*counter + UI.Margain, UI.Margain, begin + UI.ToolItemWidth*counter + UI.Margain + 40, UI.Margain + 40, 90, 0);
+	pWind->DrawTriangle(begin + UI.ToolItemWidth*counter + UI.Margain + 20, UI.Margain, begin + UI.ToolItemWidth*counter + 13 + UI.Margain, UI.Margain - 7, begin + UI.ToolItemWidth*counter + 13 + UI.Margain, UI.Margain + 17, FILLED);
+	pWind->DrawString(begin + counter*UI.ToolItemWidth - 4 + UI.Margain, UI.ToolItemWidth, "REDO");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//code to draw the save icon
+	int XV[] = { begin + counter*UI.ToolItemWidth + UI.Margain,begin + counter* UI.ToolItemWidth + UI.Margain + 40,begin + counter* UI.ToolItemWidth + UI.Margain + 40,begin + counter* UI.ToolItemWidth + UI.Margain + 35,begin + counter* UI.ToolItemWidth + UI.Margain };
+	int YV[] = { 40 + UI.Margain,40 + UI.Margain ,UI.Margain + 5,UI.Margain,UI.Margain };
+	pWind->DrawPolygon(XV, YV, 5, FILLED);
+	pWind->SetBrush(WHITE);
+	pWind->SetPen(WHITE, 3);
+	pWind->DrawRectangle(begin + counter*UI.ToolItemWidth + UI.Margain+5, 35 + UI.Margain, begin + counter*UI.ToolItemWidth + UI.Margain + 35, UI.Margain +15 , FILLED);
+	pWind->DrawRectangle(begin + counter*UI.ToolItemWidth + UI.Margain + 10, 5 + UI.Margain, begin + counter*UI.ToolItemWidth + UI.Margain + 30, 10 + UI.Margain);
+	pWind->SetBrush(BLACK);
+	pWind->SetPen(BLACK, 1);
+	pWind->DrawRectangle(begin + counter*UI.ToolItemWidth + UI.Margain + 20, UI.Margain + 6, begin + counter*UI.ToolItemWidth + UI.Margain + 25, UI.Margain + 9);
+	pWind->SetPen(BLACK, 3);
+	pWind->SetFont(25, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth - 4 + UI.Margain, UI.ToolItemWidth-5, "Save");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//code to draw the selection icon
+	pWind->DrawRectangle(begin + counter*UI.ToolItemWidth + UI.Margain, UI.Margain, begin + counter*UI.ToolItemWidth + UI.Margain + 40, UI.Margain + 40,FRAME);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(begin + counter*UI.ToolItemWidth + UI.Margain + 5, UI.Margain + 5, begin + counter*UI.ToolItemWidth + UI.Margain + 25, UI.Margain + 25);
+	pWind->DrawRectangle(begin + counter*UI.ToolItemWidth + UI.Margain + 35, UI.Margain + 35, begin + counter*UI.ToolItemWidth + UI.Margain + 15, UI.Margain + 15);
+	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth - 4 + UI.Margain, UI.ToolItemWidth - 1, "Select");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//Code to add move icon
+	pWind->SetBrush(BLACK);
+	pWind->DrawLine(begin + (UI.Margain + counter*UI.ToolItemWidth), UI.Margain + 20, begin + (UI.Margain + counter*UI.ToolItemWidth) + 40, UI.Margain + 20);
+	pWind->DrawLine(UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth + begin, UI.Margain, begin + UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth, UI.Margain + 40);
+	pWind->DrawTriangle(begin + (UI.Margain + counter*UI.ToolItemWidth), UI.Margain + 20, begin + (UI.Margain + counter*UI.ToolItemWidth) + 5, UI.Margain + 25, begin + (UI.Margain + counter*UI.ToolItemWidth) + 5, UI.Margain + 15,FILLED);
+	pWind->DrawTriangle(begin + (UI.Margain + counter*UI.ToolItemWidth) + 40, UI.Margain + 20, begin + (UI.Margain + counter*UI.ToolItemWidth) +35, UI.Margain + 25, begin + (UI.Margain + counter*UI.ToolItemWidth) +35, UI.Margain + 15, FILLED);
+	pWind->DrawTriangle(UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth + begin, UI.Margain, UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth + begin + 5, UI.Margain + 5, UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth + begin - 5, UI.Margain + 5);
+	pWind->DrawTriangle(begin + UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth, UI.Margain + 40, begin + UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth - 5, UI.Margain + 35, begin + UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth + 5, UI.Margain + 35);
+	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth  + UI.Margain, UI.ToolItemWidth - 1, "Move");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+}
+
 Output::Output()
 {
+	Components = new Cell*[UI.GridHeight];
+	for (int i = 0; i < UI.GridHeight; i++)
+	{
+		Components[i] = new Cell[UI.GridWidth];
+	}
+	for (int i = 0; i < UI.GridHeight; i++)
+	{
+		for (int j = 0; j < UI.GridWidth; j++)
+		{
+			Components[i][j] = Empty;
+		}
+	}
 	//Initialize user interface parameters
 
 	UI.AppMode = DESIGN;	//Design Mode is the startup mode
@@ -107,18 +182,7 @@ Output::Output()
 
 	CreateDesignToolBar();	//Create the desgin toolbar
 	CreateStatusBar();		//Create Status bar
-	Components = new Cell*[UI.GridHeight];
-	for (int i = 0; i < UI.GridHeight; i++)
-	{
-		Components[i] = new Cell[UI.GridWidth];
-	}
-	for (int i = 0; i < UI.GridHeight; i++)
-	{
-		for (int j = 0; j < UI.GridWidth; j++)
-		{
-			Components[i][j] = Empty;
-		}
-	}
+	
 	out.open("output.txt");
 }
 
@@ -213,28 +277,29 @@ void Output::ClearDrawingArea() const
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Draws the menu (toolbar) in the Design mode
-void Output::CreateDesignToolBar() const
+void Output::CreateDesignToolBar()
 {
 	UI.AppMode = DESIGN;	//Design Mode
 
 							//You can draw the tool bar icons in any way you want.
 
-							//First prepare List of images for each menu item
+	/*						First prepare List of images for each menu item
 	string MenuItemImages[ITM_DSN_CNT];
 	MenuItemImages[ITM_AND2] = "images\\Menu\\Menu_AND2.jpg";
 	MenuItemImages[ITM_OR2] = "images\\Menu\\Menu_OR2.jpg";
 	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
 
-	//TODO: Prepare image for each menu item and add it to the list
+	TODO: Prepare image for each menu item and add it to the list
 
-	//Draw menu item one image at a time
+	Draw menu item one image at a time
 	for (int i = 0; i<ITM_DSN_CNT; i++)
 		pWind->DrawImage(MenuItemImages[i], i*UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
 
 
-	//Draw a line under the toolbar
+	Draw a line under the toolbar
 	pWind->SetPen(RED, 3);
-	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);
+	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);*/
+	DrawToolBar();
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////

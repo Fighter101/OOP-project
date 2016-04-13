@@ -1,3 +1,13 @@
-﻿  TestCode.cpp
-e:\git\oop-project\gui\output.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
-  graphics_prj.vcxproj -> E:\GIT\OOP-project\.\Debug\graphics_prj.exe
+﻿  Output.cpp
+g:\oop\oop project\gui\output.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+g:\oop\oop project\gui\output.cpp(7): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+g:\oop\oop project\gui\output.cpp(8): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+g:\oop\oop project\gui\output.cpp(669): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+g:\oop\oop project\gui\output.cpp(670): warning C4244: '=': conversion from 'double' to 'int', possible loss of data
+g:\oop\oop project\gui\output.cpp(671): warning C4244: 'initializing': conversion from 'double' to 'int', possible loss of data
+g:\oop\oop project\gui\output.cpp(683): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+g:\oop\oop project\gui\output.cpp(684): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+g:\oop\oop project\gui\output.cpp(685): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+g:\oop\oop project\gui\output.cpp(697): warning C4244: 'argument': conversion from 'double' to 'const int', possible loss of data
+g:\oop\oop project\gui\output.cpp(37): warning C4715: 'Output::connect': not all control paths return a value
+  graphics_prj.vcxproj -> G:\OOP\OOP Project\.\Debug\graphics_prj.exe
