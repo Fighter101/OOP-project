@@ -1,92 +1,92 @@
-g:\oop\oop project\debug\graphics_prj.bsc
-g:\oop\oop project\debug\vc140.pdb
-g:\oop\oop project\debug\vc140.idb
-g:\oop\oop project\debug\testcode.sbr
-g:\oop\oop project\debug\output.sbr
-g:\oop\oop project\debug\input.sbr
-g:\oop\oop project\debug\windowinput.sbr
-g:\oop\oop project\debug\mousequeue.sbr
-g:\oop\oop project\debug\keyqueue.sbr
-g:\oop\oop project\debug\image.sbr
-g:\oop\oop project\debug\cmugraphics.sbr
-g:\oop\oop project\debug\auxil.sbr
-g:\oop\oop project\debug\auxil.obj
-g:\oop\oop project\debug\cmugraphics.obj
-g:\oop\oop project\debug\image.obj
-g:\oop\oop project\debug\keyqueue.obj
-g:\oop\oop project\debug\mousequeue.obj
-g:\oop\oop project\debug\windowinput.obj
-g:\oop\oop project\debug\input.obj
-g:\oop\oop project\debug\output.obj
-g:\oop\oop project\debug\testcode.obj
-g:\oop\oop project\debug\jutils.sbr
-g:\oop\oop project\debug\jquant2.sbr
-g:\oop\oop project\debug\jquant1.sbr
-g:\oop\oop project\debug\jmemnobs.sbr
-g:\oop\oop project\debug\jmemmgr.sbr
-g:\oop\oop project\debug\jidctred.sbr
-g:\oop\oop project\debug\jidctint.sbr
-g:\oop\oop project\debug\jidctfst.sbr
-g:\oop\oop project\debug\jidctflt.sbr
-g:\oop\oop project\debug\jerror.sbr
-g:\oop\oop project\debug\jdtrans.sbr
-g:\oop\oop project\debug\jdsample.sbr
-g:\oop\oop project\debug\jdpostct.sbr
-g:\oop\oop project\debug\jdphuff.sbr
-g:\oop\oop project\debug\jdmerge.sbr
-g:\oop\oop project\debug\jdmaster.sbr
-g:\oop\oop project\debug\jdmarker.sbr
-g:\oop\oop project\debug\jdmainct.sbr
-g:\oop\oop project\debug\jdinput.sbr
-g:\oop\oop project\debug\jdhuff.sbr
-g:\oop\oop project\debug\jdhuff.obj
-g:\oop\oop project\debug\jdinput.obj
-g:\oop\oop project\debug\jdmainct.obj
-g:\oop\oop project\debug\jdmarker.obj
-g:\oop\oop project\debug\jdmaster.obj
-g:\oop\oop project\debug\jdmerge.obj
-g:\oop\oop project\debug\jdphuff.obj
-g:\oop\oop project\debug\jdpostct.obj
-g:\oop\oop project\debug\jdsample.obj
-g:\oop\oop project\debug\jdtrans.obj
-g:\oop\oop project\debug\jerror.obj
-g:\oop\oop project\debug\jidctflt.obj
-g:\oop\oop project\debug\jidctfst.obj
-g:\oop\oop project\debug\jidctint.obj
-g:\oop\oop project\debug\jidctred.obj
-g:\oop\oop project\debug\jmemmgr.obj
-g:\oop\oop project\debug\jmemnobs.obj
-g:\oop\oop project\debug\jquant1.obj
-g:\oop\oop project\debug\jquant2.obj
-g:\oop\oop project\debug\jutils.obj
-g:\oop\oop project\debug\jddctmgr.sbr
-g:\oop\oop project\debug\jdcolor.sbr
-g:\oop\oop project\debug\jdcoefct.sbr
-g:\oop\oop project\debug\jdatasrc.sbr
-g:\oop\oop project\debug\jdapistd.sbr
-g:\oop\oop project\debug\jdapimin.sbr
-g:\oop\oop project\debug\jcparam.sbr
-g:\oop\oop project\debug\jcomapi.sbr
-g:\oop\oop project\debug\jpegload.sbr
-g:\oop\oop project\debug\jpegload.obj
-g:\oop\oop project\debug\jcomapi.obj
-g:\oop\oop project\debug\jcparam.obj
-g:\oop\oop project\debug\jdapimin.obj
-g:\oop\oop project\debug\jdapistd.obj
-g:\oop\oop project\debug\jdatasrc.obj
-g:\oop\oop project\debug\jdcoefct.obj
-g:\oop\oop project\debug\jdcolor.obj
-g:\oop\oop project\debug\jddctmgr.obj
-g:\oop\oop project\debug\graphics_prj.ilk
-g:\oop\oop project\debug\graphics_prj.exe
-g:\oop\oop project\debug\graphics_prj.pdb
-g:\oop\oop project\.\debug\graphics_prj.exe
-g:\oop\oop project\debug\graphics_prj.tlog\bscmake.command.1.tlog
-g:\oop\oop project\debug\graphics_prj.tlog\bscmake.read.1.tlog
-g:\oop\oop project\debug\graphics_prj.tlog\bscmake.write.1.tlog
-g:\oop\oop project\debug\graphics_prj.tlog\cl.command.1.tlog
-g:\oop\oop project\debug\graphics_prj.tlog\cl.read.1.tlog
-g:\oop\oop project\debug\graphics_prj.tlog\cl.write.1.tlog
-g:\oop\oop project\debug\graphics_prj.tlog\link.command.1.tlog
-g:\oop\oop project\debug\graphics_prj.tlog\link.read.1.tlog
-g:\oop\oop project\debug\graphics_prj.tlog\link.write.1.tlog
+e:\git\oop-project\debug\graphics_prj.bsc
+e:\git\oop-project\debug\vc140.pdb
+e:\git\oop-project\debug\vc140.idb
+e:\git\oop-project\debug\testcode.sbr
+e:\git\oop-project\debug\output.sbr
+e:\git\oop-project\debug\input.sbr
+e:\git\oop-project\debug\windowinput.sbr
+e:\git\oop-project\debug\mousequeue.sbr
+e:\git\oop-project\debug\keyqueue.sbr
+e:\git\oop-project\debug\image.sbr
+e:\git\oop-project\debug\cmugraphics.sbr
+e:\git\oop-project\debug\auxil.sbr
+e:\git\oop-project\debug\auxil.obj
+e:\git\oop-project\debug\cmugraphics.obj
+e:\git\oop-project\debug\image.obj
+e:\git\oop-project\debug\keyqueue.obj
+e:\git\oop-project\debug\mousequeue.obj
+e:\git\oop-project\debug\windowinput.obj
+e:\git\oop-project\debug\input.obj
+e:\git\oop-project\debug\output.obj
+e:\git\oop-project\debug\testcode.obj
+e:\git\oop-project\debug\jutils.sbr
+e:\git\oop-project\debug\jquant2.sbr
+e:\git\oop-project\debug\jquant1.sbr
+e:\git\oop-project\debug\jmemnobs.sbr
+e:\git\oop-project\debug\jmemmgr.sbr
+e:\git\oop-project\debug\jidctred.sbr
+e:\git\oop-project\debug\jidctint.sbr
+e:\git\oop-project\debug\jidctfst.sbr
+e:\git\oop-project\debug\jidctflt.sbr
+e:\git\oop-project\debug\jerror.sbr
+e:\git\oop-project\debug\jdtrans.sbr
+e:\git\oop-project\debug\jdsample.sbr
+e:\git\oop-project\debug\jdpostct.sbr
+e:\git\oop-project\debug\jdphuff.sbr
+e:\git\oop-project\debug\jdmerge.sbr
+e:\git\oop-project\debug\jdmaster.sbr
+e:\git\oop-project\debug\jdmarker.sbr
+e:\git\oop-project\debug\jdmainct.sbr
+e:\git\oop-project\debug\jdinput.sbr
+e:\git\oop-project\debug\jdhuff.sbr
+e:\git\oop-project\debug\jdhuff.obj
+e:\git\oop-project\debug\jdinput.obj
+e:\git\oop-project\debug\jdmainct.obj
+e:\git\oop-project\debug\jdmarker.obj
+e:\git\oop-project\debug\jdmaster.obj
+e:\git\oop-project\debug\jdmerge.obj
+e:\git\oop-project\debug\jdphuff.obj
+e:\git\oop-project\debug\jdpostct.obj
+e:\git\oop-project\debug\jdsample.obj
+e:\git\oop-project\debug\jdtrans.obj
+e:\git\oop-project\debug\jerror.obj
+e:\git\oop-project\debug\jidctflt.obj
+e:\git\oop-project\debug\jidctfst.obj
+e:\git\oop-project\debug\jidctint.obj
+e:\git\oop-project\debug\jidctred.obj
+e:\git\oop-project\debug\jmemmgr.obj
+e:\git\oop-project\debug\jmemnobs.obj
+e:\git\oop-project\debug\jquant1.obj
+e:\git\oop-project\debug\jquant2.obj
+e:\git\oop-project\debug\jutils.obj
+e:\git\oop-project\debug\jddctmgr.sbr
+e:\git\oop-project\debug\jdcolor.sbr
+e:\git\oop-project\debug\jdcoefct.sbr
+e:\git\oop-project\debug\jdatasrc.sbr
+e:\git\oop-project\debug\jdapistd.sbr
+e:\git\oop-project\debug\jdapimin.sbr
+e:\git\oop-project\debug\jcparam.sbr
+e:\git\oop-project\debug\jcomapi.sbr
+e:\git\oop-project\debug\jpegload.sbr
+e:\git\oop-project\debug\jpegload.obj
+e:\git\oop-project\debug\jcomapi.obj
+e:\git\oop-project\debug\jcparam.obj
+e:\git\oop-project\debug\jdapimin.obj
+e:\git\oop-project\debug\jdapistd.obj
+e:\git\oop-project\debug\jdatasrc.obj
+e:\git\oop-project\debug\jdcoefct.obj
+e:\git\oop-project\debug\jdcolor.obj
+e:\git\oop-project\debug\jddctmgr.obj
+e:\git\oop-project\debug\graphics_prj.ilk
+e:\git\oop-project\debug\graphics_prj.exe
+e:\git\oop-project\debug\graphics_prj.pdb
+e:\git\oop-project\.\debug\graphics_prj.exe
+e:\git\oop-project\debug\graphics_prj.tlog\bscmake.command.1.tlog
+e:\git\oop-project\debug\graphics_prj.tlog\bscmake.read.1.tlog
+e:\git\oop-project\debug\graphics_prj.tlog\bscmake.write.1.tlog
+e:\git\oop-project\debug\graphics_prj.tlog\cl.command.1.tlog
+e:\git\oop-project\debug\graphics_prj.tlog\cl.read.1.tlog
+e:\git\oop-project\debug\graphics_prj.tlog\cl.write.1.tlog
+e:\git\oop-project\debug\graphics_prj.tlog\link.command.1.tlog
+e:\git\oop-project\debug\graphics_prj.tlog\link.read.1.tlog
+e:\git\oop-project\debug\graphics_prj.tlog\link.write.1.tlog

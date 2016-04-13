@@ -79,12 +79,17 @@ void Output::Drawconnection()
 	{
 		pWind->DrawLine(points[i].first, points[i].second, points[i + 1].first, points[i + 1].second);
 	}
+	points.clear();
 }
 
 void Output::DrawToolBar() 
 {
+	
+	int begin = 1.2*UI.width / 4, end = begin+7*UI.ToolItemWidth;
+	pWind->SetPen(WHITE, 3);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(begin, 0, end, UI.ToolBarHeight);
 	pWind->SetPen(BLACK, 5);
-	int begin = UI.width / 4, end = 3 * UI.width / 4;
 	pWind->DrawLine(begin, 0, begin, UI.ToolBarHeight);
 	pWind->DrawLine(end, 0, end, UI.ToolBarHeight);
 	pWind->DrawLine(begin, UI.ToolBarHeight, end, UI.ToolBarHeight);
@@ -138,7 +143,26 @@ void Output::DrawToolBar()
 	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
 	pWind->DrawString(begin + counter*UI.ToolItemWidth - 4 + UI.Margain, UI.ToolItemWidth - 1, "Select");
 	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
-	//Code to add move icon
+	pWind->SetFont(28, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth+5 , UI.Margain+UI.ToolBarHeight/4, "EXIT");
+	
+}
+
+void Output::DrawGatesToolBar()
+{
+	
+	int begin = 1.2*UI.width / 4, end = begin + 6 * UI.ToolItemWidth;
+	pWind->SetPen(WHITE, 3);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(begin, 0, end, UI.ToolBarHeight);
+	pWind->SetPen(BLACK, 5);
+	pWind->DrawLine(begin, 0, begin, UI.ToolBarHeight);
+	pWind->DrawLine(end, 0, end, UI.ToolBarHeight);
+	pWind->DrawLine(begin, UI.ToolBarHeight, end, UI.ToolBarHeight);
+	int counter = 0;
+	pWind->SetBrush(BLACK);
+	pWind->SetPen(BLACK, 3);
+	//Code to draw Move icon
 	pWind->SetBrush(BLACK);
 	pWind->DrawLine(begin + (UI.Margain + counter*UI.ToolItemWidth), UI.Margain + 20, begin + (UI.Margain + counter*UI.ToolItemWidth) + 40, UI.Margain + 20);
 	pWind->DrawLine(UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth + begin, UI.Margain, begin + UI.ToolItemWidth / 2 + counter*UI.ToolItemWidth, UI.Margain + 40);
@@ -149,6 +173,158 @@ void Output::DrawToolBar()
 	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
 	pWind->DrawString(begin + counter*UI.ToolItemWidth  + UI.Margain, UI.ToolItemWidth - 1, "Move");
 	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//Code to draw Copy icon
+	pWind->SetPen(BLACK, 3);
+	int XV[] = { begin + UI.ToolItemWidth*counter + UI.Margain,begin + UI.ToolItemWidth*counter + UI.Margain + 30,begin + UI.ToolItemWidth*counter + UI.Margain + 30,begin + UI.ToolItemWidth*counter + UI.Margain + 20,begin + UI.ToolItemWidth*counter + UI.Margain };
+	int YV[] = { UI.Margain + 30,UI.Margain + 30 ,UI.Margain + 10,UI.Margain ,UI.Margain };
+	pWind->DrawPolygon(XV, YV,5,FRAME);
+	pWind->DrawTriangle(begin + UI.ToolItemWidth*counter + UI.Margain + 20, UI.Margain + 10, begin + UI.ToolItemWidth*counter + UI.Margain + 20, UI.Margain , begin + UI.ToolItemWidth*counter + UI.Margain + 30, UI.Margain + 10,FRAME);
+	for (int i = 0; i < 5; i++)
+	{
+		XV[i] += 10;
+		YV[i] += 15;
+	}
+	pWind->SetBrush(WHITE);
+	pWind->DrawPolygon(XV, YV, 5, FILLED);
+	pWind->DrawTriangle(begin + UI.ToolItemWidth*counter + UI.Margain + 30, UI.Margain + 15, begin + UI.ToolItemWidth*counter + UI.Margain + 30, UI.Margain+25, begin + UI.ToolItemWidth*counter + UI.Margain + 40, UI.Margain + 25,FRAME);
+	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth  + UI.Margain, UI.ToolItemWidth - 1, "Copy");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//Code to draw Paste icon
+	pWind->SetBrush(BLACK);
+	pWind->DrawRectangle(begin + UI.ToolItemWidth*counter + UI.Margain, UI.Margain, begin + UI.ToolItemWidth*counter + UI.Margain + 30, 40 + UI.Margain,FILLED,5,5);
+	pWind->SetBrush(WHITE);
+	pWind->SetPen(WHITE, 3);
+	pWind->DrawRectangle(begin + UI.ToolItemWidth*counter + UI.Margain + 5, UI.Margain + 5, begin + UI.ToolItemWidth*counter + UI.Margain + 25, UI.Margain + 10, FILLED);
+	pWind->SetPen(BLACK, 3);
+	pWind->SetBrush(WHITE);
+	for (int i = 0; i < 5; i++)
+	{	
+		XV[i] += UI.ToolItemWidth;
+	}
+	pWind->DrawPolygon(XV, YV, 5, FILLED);
+	pWind->DrawTriangle(begin + UI.ToolItemWidth*counter + UI.Margain + 30, UI.Margain + 15, begin + UI.ToolItemWidth*counter + UI.Margain + 30, UI.Margain + 25, begin + UI.ToolItemWidth*counter + UI.Margain + 40, UI.Margain + 25, FRAME);
+	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth + UI.Margain, UI.ToolItemWidth - 1, "Paste");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//Code to Draw Label Icon
+	pWind->DrawCircle(begin + UI.ToolItemWidth*counter + UI.Margain + 20, UI.Margain + 20, 20, FRAME);
+	pWind->SetFont(40, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + UI.ToolItemWidth*counter + UI.Margain + 15, UI.Margain , "i");
+	pWind->SetFont(20, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth + UI.Margain, UI.ToolItemWidth - 1, "Label");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//Code to Draw Edit Icon
+	pWind->SetBrush(BLACK);
+	pWind->SetPen(BLACK, 3);
+	pWind->DrawTriangle(begin + UI.ToolItemWidth*counter + UI.Margain + 20, UI.Margain + 40, begin + UI.ToolItemWidth*counter + UI.Margain + 15, UI.Margain + 25, begin + UI.ToolItemWidth*counter + UI.Margain + 25, UI.Margain + 25, FILLED);
+	pWind->DrawRectangle(begin + UI.ToolItemWidth*counter + UI.Margain + 15, UI.Margain + 22, begin + UI.ToolItemWidth*counter + UI.Margain + 25, UI.Margain,FILLED);
+	pWind->DrawString(begin + counter*UI.ToolItemWidth + UI.Margain, UI.ToolItemWidth - 1, "Edit");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	//Code to Draw Delete icon
+	pWind->DrawLine(begin + UI.ToolItemWidth*counter + UI.Margain+10, UI.Margain + 30, begin -10+ UI.ToolItemWidth*counter + UI.Margain + 40, UI.Margain+10);
+	pWind->DrawLine(begin + UI.ToolItemWidth*counter + UI.Margain+40-10, UI.Margain + 30, begin + 10+UI.ToolItemWidth*counter + UI.Margain, UI.Margain+10);
+	pWind->DrawString(begin + counter*UI.ToolItemWidth + UI.Margain-5, UI.ToolItemWidth - 1, "Delete");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+	
+}
+
+void Output::DrawGatesBar()
+{
+	pWind->SetPen(BLACK, 5);
+	int begin = UI.height / 4, end = begin + 7 * UI.ToolItemWidth;
+	pWind->DrawLine(UI.width, begin,UI.width-UI.GateBarHeight,begin);
+	pWind->DrawLine(UI.width, end, UI.width - UI.GateBarHeight, end);
+	pWind->DrawLine(UI.width-UI.GateBarHeight, begin, UI.width - UI.GateBarHeight,end);
+	int counter = 0;
+	DrawAND2(GraphicsInfo(UI.width -2* UI.Margain - UI.AllGateDimensions , begin + UI.Margain + UI.AllGateDimensions / 2 + counter*UI.ToolItemWidth, 0, 0));
+	pWind->DrawLine(UI.width, begin + counter*UI.ToolItemWidth, UI.width - UI.GateBarHeight, begin + (++counter)*UI.ToolItemWidth);
+	DrawOR2(GraphicsInfo(UI.width - 2 * UI.Margain - UI.AllGateDimensions, begin + UI.Margain + UI.AllGateDimensions / 2 + counter*UI.ToolItemWidth, 0, 0));
+	pWind->DrawLine(UI.width, begin + counter*UI.ToolItemWidth, UI.width - UI.GateBarHeight, begin + (++counter)*UI.ToolItemWidth);
+	DrawXOR2(GraphicsInfo(UI.width - 2 * UI.Margain - UI.AllGateDimensions, begin + UI.Margain + UI.AllGateDimensions / 2 + counter*UI.ToolItemWidth, 0, 0));
+	pWind->DrawLine(UI.width, begin + counter*UI.ToolItemWidth, UI.width - UI.GateBarHeight, begin + (++counter)*UI.ToolItemWidth);
+	DrawSwitch(GraphicsInfo(UI.width - 2 * UI.Margain - UI.SwitchWidth, begin + UI.Margain + UI.SwitchHeight  + counter*UI.ToolItemWidth, 0, 0));
+	pWind->DrawLine(UI.width, begin + counter*UI.ToolItemWidth, UI.width - UI.GateBarHeight, begin + (++counter)*UI.ToolItemWidth);
+	DrawBuffer(GraphicsInfo(UI.width - 2 * UI.Margain - UI.BufferDimensions, begin + UI.Margain + UI.BufferDimensions / 2 + counter*UI.ToolItemWidth, 0, 0));
+	pWind->DrawLine(UI.width, begin + counter*UI.ToolItemWidth, UI.width - UI.GateBarHeight, begin + (++counter)*UI.ToolItemWidth);
+	DrawInverter(GraphicsInfo(UI.width - 2 * UI.Margain - UI.BufferDimensions, begin + UI.Margain + UI.BufferDimensions / 2 + counter*UI.ToolItemWidth, 0, 0));
+	pWind->DrawLine(UI.width, begin + counter*UI.ToolItemWidth, UI.width - UI.GateBarHeight, begin + (++counter)*UI.ToolItemWidth);
+	DrawLED(GraphicsInfo(UI.width - UI.LedDimensions, begin + UI.Margain + UI.LedDimensions / 2 + counter*UI.ToolItemWidth, 0, 0));
+	
+}
+
+void Output::DrawAndBar()
+{
+	int counter = 0;
+	int begin = UI.height / 3;
+	int end = begin + 4 * UI.ToolItemWidth;
+	pWind->SetPen(WHITE, 3);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(0, begin, UI.GateBarHeight, end);
+	pWind->SetPen(BLACK, 5);
+	pWind->DrawLine(0, begin, UI.GateBarHeight, begin);
+	pWind->DrawLine(0, end, UI.GateBarHeight, end);
+	pWind->DrawLine(UI.GateBarHeight, begin, UI.GateBarHeight, end);
+	DrawAND2(GraphicsInfo( UI.ConnectionDimensions + UI.AllGateDimensions / 2,begin+counter*UI.ToolItemWidth+ UI.Margain + UI.AllGateDimensions / 2,0,0));
+	pWind->DrawLine(0,begin+ ++counter*UI.ToolItemWidth, UI.GateBarHeight,begin+ counter*UI.ToolItemWidth);
+	DrawAND3(GraphicsInfo( UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+	DrawNAND2(GraphicsInfo( UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+	DrawNAND3(GraphicsInfo( UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+}
+
+void Output::DrawOrBar()
+{
+	int counter = 0;
+	int begin = UI.height / 3;
+	int end = begin + 4 * UI.ToolItemWidth;
+	pWind->SetPen(WHITE, 3);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(0, begin, UI.GateBarHeight, end);
+	pWind->SetPen(BLACK, 5);
+	pWind->DrawLine(0, begin, UI.GateBarHeight, begin);
+	pWind->DrawLine(0, end, UI.GateBarHeight, end);
+	pWind->DrawLine(UI.GateBarHeight, begin, UI.GateBarHeight, end);
+	DrawOR2(GraphicsInfo(UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+	DrawOR3(GraphicsInfo(UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+	DrawNOR2(GraphicsInfo(UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+	DrawNOR3(GraphicsInfo(UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+}
+
+void Output::DrawXorBar()
+{
+	int counter = 0;
+	int begin = UI.height / 3;
+	int end = begin + 4 * UI.ToolItemWidth;
+	pWind->SetPen(WHITE, 3);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(0, begin, UI.GateBarHeight, end);
+	pWind->SetPen(BLACK, 5);
+	pWind->DrawLine(0, begin, UI.GateBarHeight, begin);
+	pWind->DrawLine(0, end, UI.GateBarHeight, end);
+	pWind->DrawLine(UI.GateBarHeight, begin, UI.GateBarHeight, end);
+	DrawXOR2(GraphicsInfo(UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+	DrawXOR3(GraphicsInfo(UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+	DrawXNOR2(GraphicsInfo(UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+	DrawXNOR3(GraphicsInfo(UI.ConnectionDimensions + UI.AllGateDimensions / 2, begin + counter*UI.ToolItemWidth + UI.Margain + UI.AllGateDimensions / 2, 0, 0));
+	pWind->DrawLine(0, begin + ++counter*UI.ToolItemWidth, UI.GateBarHeight, begin + counter*UI.ToolItemWidth);
+}
+
+void Output::EraseToolBar()
+{
+	int begin = 1.2*UI.width / 4, end = begin + 6 * UI.ToolItemWidth;
+	pWind->SetPen(WHITE, 3);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(begin, 0, end, UI.ToolBarHeight);
 }
 
 Output::Output()
@@ -300,6 +476,11 @@ void Output::CreateDesignToolBar()
 	pWind->SetPen(RED, 3);
 	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);*/
 	DrawToolBar();
+	DrawGatesToolBar();
+	DrawGatesBar();
+	DrawAndBar();
+	DrawOrBar();
+	DrawXorBar();
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////

@@ -21,6 +21,7 @@ private:
 	void Drawconnection();
 	//Auxillary functions to create the status bar
 	void DrawToolBar();
+	
 public:
 	Output(); // Performs the Window Initialization
 	Input* CreateInput() const; //creates a pointer to the Input object
@@ -35,7 +36,12 @@ public:
 
 	window* CreateWind(int wd, int h, int x, int y) const; //Creates user interface window
 	void print();
-	
+	void DrawGatesToolBar();
+	void DrawGatesBar();
+	void DrawAndBar();
+	void DrawOrBar();
+	void DrawXorBar();
+	void EraseToolBar();
 	// Draws 2-input AND gate
 	void DrawAND(GraphicsInfo r_GfxInfo, bool selected = false, bool invert = false, bool connections = false) const;
 	void DrawAND2(GraphicsInfo r_GfxInfo, bool selected = false);

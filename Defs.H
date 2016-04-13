@@ -10,20 +10,26 @@ enum ActionType
 	ADD_INV,			//Add 1-input Inverter gate
 	ADD_AND_GATE_2,		//Add 2-input AND gate
 	ADD_OR_GATE_2,		//Add 2-input OR gate
-	ADD_NAND_GATE_2,	//Add 2-input NAND gate
+	ADD_OR_GATE_3,
+	ADD_NAND_GATE_2,
+	ADD_NAND_GATE_3,	//Add 2-input NAND gate
 	ADD_NOR_GATE_2,		//Add 2-input NOR gate
 	ADD_XOR_GATE_2,		//Add 2-input XOR gate
 	ADD_XNOR_GATE_2,	//Add 2-input XNOR gate
 	ADD_AND_GATE_3,		//Add 3-input AND gate
 	ADD_NOR_GATE_3,		//Add 3-input NOR gate
 	ADD_XOR_GATE_3,		//Add 3-input XOR gate
+	ADD_XNOR_GATE_3,
 	ADD_Switch,			//Add Switch
 	ADD_LED,			//Add LED
 	ADD_CONNECTION,		//Add Wire Connection
-
+	ADD_GATE_BAR,
+	ADD_AND,
+	ADD_OR,
+	ADD_XOR,
 	ADD_Label,			//Add Label to a Component, a Connection
 	EDIT_Label,			//Edit Label of a Component, a Connection
-
+	DRWNG_AREA,
 	Create_TruthTable,	//Create Truth Table of the Circuit
 
 	Change_Switch,		//Change Switch Status in Simulation Mode

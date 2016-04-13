@@ -19,7 +19,8 @@ struct UI_Info	//User Interface Info.
 		StatusBarHeight = 50,	//Status Bar Height
 		ToolBarHeight = 80,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
 		ToolItemWidth = 60,//Width of each item in toolbar menu
-		Margain = 10;
+		Margain = 10,
+		GateBarHeight = 90;
 	color DrawColor;		//Drawing color
 	color SelectColor;		//Highlighting color
 	color ConnColor;		//Connector color
