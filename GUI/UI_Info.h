@@ -17,6 +17,7 @@ struct UI_Info	//User Interface Info.
 	static const int	width = 1000, height = 750,	//Window width and height
 		wx = 15, wy = 15,			//Window starting coordinates
 		StatusBarHeight = 50,	//Status Bar Height
+		StatusBarWidth=800,
 		ToolBarHeight = 80,		//Tool Bar Height (distance from top of window to bottom line of toolbar)
 		ToolItemWidth = 60,//Width of each item in toolbar menu
 		Margain = 10,
@@ -42,5 +43,13 @@ struct UI_Info	//User Interface Info.
 		PixelDenisty = 5;
 	
 }UI;	//create a single global object UI
-
+struct InterfaceX
+{
+	bool ToolBar = true;
+	bool  GateBar = false;
+	bool AndBar = false;
+	bool OrBar = false;
+	bool  XorBar = false;
+	bool Simulation = false;
+};
 #endif

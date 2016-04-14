@@ -1,3 +1,4 @@
 ﻿  TestCode.cpp
 e:\git\oop-project\gui\output.h(8): warning C4067: unexpected tokens following preprocessor directive - expected a newline
+e:\git\oop-project\testcode.cpp(150): warning C4390: ';': empty controlled statement found; is this the intent?
   graphics_prj.vcxproj -> E:\GIT\OOP-project\.\Debug\graphics_prj.exe

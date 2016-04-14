@@ -6,7 +6,7 @@
 int main()
 {
 	int x,y;
-
+	InterfaceX UN;
 	//Create Input and Output objects to test
 	Output *pOut = new Output();;
 	Input *pIn = pOut->CreateInput();
@@ -20,8 +20,8 @@ int main()
 	//			This has already been done through the constrcutor of class Output
 	///////////////////////////////////////////////////////////////////////////////////
 
-	pOut->PrintMsg("TEST1: Drawing Tool bar and Status bar, Click anywhere to continue");
-	pIn->GetPointClicked(x,y);	//Wait for any click
+	//pOut->PrintMsg("TEST1: Drawing Tool bar and Status bar, Click anywhere to continue");
+	//pIn->GetPointClicked(x,y);	//Wait for any click
 
 	
 	///////////////////////////////////////////////////////////////////////////////////
@@ -29,13 +29,13 @@ int main()
 	//			
 	///////////////////////////////////////////////////////////////////////////////////
 	
-	pOut->PrintMsg("TEST2: Now we will show that Output class can draw any Component in any state, Click anywhere to continue");
+	pOut->PrintMsg("Testing All User interface shapes");
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
 	GraphicsInfo GfxInfo;  //to be used with draw function of the class Ouput
 
 	/// 2.1- AND2 Gate test
-	pOut->PrintMsg("Drawing 2-input AND gate, Normal and Highlighted,  Click to continue");
+	//pOut->PrintMsg("Drawing 2-input AND gate, Normal and Highlighted,  Click to continue");
 	
 	//Drawing Normal AND2 gate
 	GfxInfo.x1 = 120;	GfxInfo.y1 = 120; 
@@ -52,7 +52,7 @@ int main()
 
 	/// 2.2- NAND2 Gate test
 	GfxInfo.x1 = 100 + 20;	GfxInfo.y1 = 240;
-	pOut->PrintMsg("Drawing 2-input NAND gate, Normal and Highlighted,  Click to continue");
+	//pOut->PrintMsg("Drawing 2-input NAND gate, Normal and Highlighted,  Click to continue");
 	pOut->DrawNAND2(GfxInfo);
 	GfxInfo.x1 = 180 + 20;	GfxInfo.y1 = 240;
 	pOut->DrawNAND2(GfxInfo, true);
@@ -65,7 +65,7 @@ int main()
 	//pOut->ClearDrawingArea();
 
 	/// 2.3- OR2 and NOR2 Gates test
-	pOut->PrintMsg("Drawing 2-input OR and NOR gates, Normal and Highlighted,  Click to continue");
+	//pOut->PrintMsg("Drawing 2-input OR and NOR gates, Normal and Highlighted,  Click to continue");
 	GfxInfo.x1 = 260 + 20;	GfxInfo.y1 = 120;
 	pOut->DrawOR2(GfxInfo);
 	GfxInfo.x1 = 340 + 20;	GfxInfo.y1 = 120;
@@ -87,7 +87,7 @@ int main()
 	//pOut->ClearDrawingArea();
 
 	/// 2.4- XOR2 and XNOR2 Gates test
-	pOut->PrintMsg("Drawing 2-input XOR and XNOR gates, Normal and Highlighted,  Click to continue");
+	//pOut->PrintMsg("Drawing 2-input XOR and XNOR gates, Normal and Highlighted,  Click to continue");
 	///TODO: Add code to draw 2-input XOR and XNOR gates, Normal and Highlighted for each
 	GfxInfo.x1 = 420 + 20;	GfxInfo.y1 = 120;
 	pOut->DrawXOR2(GfxInfo);
@@ -110,7 +110,7 @@ int main()
 	//pOut->ClearDrawingArea();
 	
 	/// 2.5- Buffer and Inverter Gates test
-	pOut->PrintMsg("Drawing Buffer and Inverter Gates, Normal and Highlighted,  Click to continue");
+	//pOut->PrintMsg("Drawing Buffer and Inverter Gates, Normal and Highlighted,  Click to continue");
 	GfxInfo.x1 = 580 + 20; GfxInfo.y1 = 120;
 	pOut->DrawBuffer(GfxInfo);
 	GfxInfo.x1 = 580 + 20; GfxInfo.y1 = 180;
@@ -133,7 +133,7 @@ int main()
 	GfxInfo.x1 = 640 + 20; GfxInfo.y1 = 300;
 	pOut->DrawSwitch(GfxInfo, true, true);
 	/// 2.6- AND3, NOR3, and XOR3 Gates test
-	pOut->PrintMsg("Drawing 3-input AND, NOR, XOR Gates, Normal and Highlighted,  Click to continue");
+	//pOut->PrintMsg("Drawing 3-input AND, NOR, XOR Gates, Normal and Highlighted,  Click to continue");
 	GfxInfo.x1 = 750 + 20;	GfxInfo.y1 = 120;
 	pOut->DrawLED(GfxInfo);
 	GfxInfo.x1 = 750 + 20;	GfxInfo.y1 = 180;
@@ -147,10 +147,9 @@ int main()
 	pOut->print();
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	//pOut->ClearDrawingArea();
-	if (!(pOut->connect(GraphicsInfo(10, 150, 450, 500))))
-	pOut->PrintMsg("Error");
+	if (!(pOut->connect(GraphicsInfo(10, 150, 450, 500))));
 	/// 2.7- Switch and LED test
-	pOut->PrintMsg("Drawing Switch and LED, Normal and Highlighted,  Click to continue");
+	//pOut->PrintMsg("Drawing Switch and LED, Normal and Highlighted,  Click to continue");
 	
 	///TODO: Add code to draw Switch and LED, Normal and Highlighted for each
 
@@ -159,7 +158,7 @@ int main()
 
 
 	/// 2.8- Connections
-	pOut->PrintMsg("Drawing connections, Normal, Highlighted, straight, and broken,  Click to continue");
+	//pOut->PrintMsg("Drawing connections, Normal, Highlighted, straight, and broken,  Click to continue");
 	
 	///TODO: Add code to draw connections, Normal, Highlighted, straight, and broken (all combinations) 
 
@@ -182,7 +181,6 @@ int main()
 	///TODO: Add code here to 
 	// 1- Read a string from the user on the status bar and print it inside the drawing area
 	pIn->GetSrting(pOut);
-
 	pIn->GetPointClicked(x,y);	//Wait for any click
 	pOut->ClearDrawingArea();
 
@@ -191,27 +189,45 @@ int main()
 	///////////////////////////////////////////////////////////////////////////////////
 	pOut->PrintMsg("TEST4: Testing Input ability to detect User Action, click anywhere");
 
-	ActionType ActType=ADD_AND;
+	ActionType ActType;
 	
 	///TODO:  You must add a case for each action
 	//Add cases for the missing actions below
 	do
 	{
-		ActType = pIn->GetUserAction(ActType);
+		ActType = pIn->GetUserAction(UN);
 
 		switch (ActType)
 		{
 		case ADD_GATE_BAR:
+		{
 			pOut->DrawGatesBar();
+			UN.GateBar = true;
+		}
 			break;
 		case ADD_AND:
+		{
 			pOut->DrawAndBar();
+			UN.AndBar = true;
+			UN.OrBar = false;
+			UN.XorBar = false;
+		}
 			break;
 		case ADD_OR:
+		{
 			pOut->DrawOrBar();
+			UN.OrBar = true; 
+			UN.AndBar = false;
+			UN.XorBar = false;
+		}
 			break;
 		case ADD_XOR:
+		{
 			pOut->DrawXorBar();
+			UN.XorBar = true;
+			UN.OrBar = false;
+			UN.AndBar = false;
+		}
 			break;
 		case ADD_Buff:
 				pOut->PrintMsg("Action: add a buffer gate , Click anywhere");
@@ -258,13 +274,18 @@ int main()
 				break;
 
 		case SIM_MODE:
-				pOut->PrintMsg("Action: Switch to Simulation Mode, creating simualtion tool bar");
+		{
+			pOut->PrintMsg("Action: Switch to Simulation Mode, creating simualtion tool bar");
 				pOut->CreateSimulationToolBar();
+			UN.Simulation = true;
+		}
+
 				break;
 
 		case DSN_MODE:
-				pOut->PrintMsg("Action: Switch to Design Mode, creating Design tool bar");
-				pOut->CreateDesignToolBar();
+		{pOut->PrintMsg("Action: Switch to Design Mode, creating Design tool bar");
+		UN.Simulation = false;
+		pOut->CreateDesignToolBar();}
 				break;
 		case DRWNG_AREA:
 			pOut->PrintMsg("Action: a click on the Drawing area, Click anywhere");

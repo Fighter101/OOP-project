@@ -33,7 +33,11 @@ bool Output::connect(GraphicsInfo r_GfxInfo)
 	return false;
 	Getpoints(r_GfxInfo.x2 / UI.PixelDenisty, r_GfxInfo.y2 / UI.PixelDenisty);
 	Drawconnection();
-
+	for (int i = 0; i < UI.GridHeight; i++)
+	{
+		delete[]parent[i];
+	}
+	delete[]parent;
 }
 
 bool Output::valid(int x, int y)
@@ -84,9 +88,9 @@ void Output::Drawconnection()
 
 void Output::DrawToolBar() 
 {
-	
+	SimulationIcon(false);
 	int begin = 1.2*UI.width / 4, end = begin+7*UI.ToolItemWidth;
-	pWind->SetPen(WHITE, 3);
+	pWind->SetPen(WHITE, 1);
 	pWind->SetBrush(WHITE);
 	pWind->DrawRectangle(begin, 0, end, UI.ToolBarHeight);
 	pWind->SetPen(BLACK, 5);
@@ -146,6 +150,55 @@ void Output::DrawToolBar()
 	pWind->SetFont(28, BOLD, BY_NAME, "Arial");
 	pWind->DrawString(begin + counter*UI.ToolItemWidth+5 , UI.Margain+UI.ToolBarHeight/4, "EXIT");
 	
+}
+
+void Output::CreateSimulation()
+{
+	pWind->SetBrush(WHITE);
+	pWind->SetPen(WHITE, 3);
+	pWind->DrawRectangle(0, 0, UI.width, UI.height);
+	SimulationIcon(true);
+	CreateSimulationBar();
+}
+
+void Output::CreateSimulationBar()
+{
+	int begin = 1.2*UI.width / 4, end = begin + 7 * UI.ToolItemWidth;
+	pWind->SetPen(WHITE, 1);
+	pWind->SetBrush(WHITE);
+	pWind->DrawRectangle(begin, 0, end, UI.ToolBarHeight);
+	pWind->SetPen(BLACK, 5);
+	pWind->DrawLine(begin, 0, begin, UI.ToolBarHeight);
+	pWind->DrawLine(end, 0, end, UI.ToolBarHeight);
+	pWind->DrawLine(begin, UI.ToolBarHeight, end, UI.ToolBarHeight);
+	int counter = 0;
+	pWind->SetBrush(BLACK);
+	pWind->SetPen(BLACK, 3);
+	pWind->DrawRectangle(begin + counter*UI.ToolItemWidth + UI.Margain, UI.Margain, begin + counter*UI.ToolItemWidth + UI.Margain + 40, UI.Margain + 40,FRAME);
+	for (int i = 0; i <= 40; i+=10)
+	{
+		pWind->DrawLine(begin + counter*UI.ToolItemWidth + UI.Margain + i, UI.Margain, begin + counter*UI.ToolItemWidth + UI.Margain + i, UI.Margain + 40);
+		pWind->DrawLine(begin + counter*UI.ToolItemWidth + UI.Margain, UI.Margain + i, begin + counter*UI.ToolItemWidth + UI.Margain + 40, UI.Margain + i);
+	}
+	pWind->SetFont(10, BOLD, BY_NAME, "Arial");
+	pWind->DrawString(begin + counter*UI.ToolItemWidth - 4 + UI.Margain, UI.ToolItemWidth - 1, "TruthTable");
+	pWind->DrawLine(begin + UI.ToolItemWidth*++counter, 0, begin + UI.ToolItemWidth*counter, UI.ToolBarHeight);
+}
+
+void Output::SimulationIcon(bool SIMU)
+{
+	pWind->SetBrush(BLACK);
+	pWind->SetPen(BLACK, 3);
+	if (!SIMU)
+	{
+		pWind->DrawRectangle(UI.Margain, UI.Margain, UI.Margain + UI.ToolBarHeight, UI.Margain + UI.ToolBarHeight,FRAME);
+		pWind->DrawTriangle(2 * UI.Margain, 2 * UI.Margain, 2 * UI.Margain, UI.ToolBarHeight, UI.ToolBarHeight, UI.Margain + UI.ToolBarHeight / 2,FRAME);
+	}
+	else
+	{
+		pWind->DrawRectangle(UI.Margain, UI.Margain, UI.Margain + UI.ToolBarHeight, UI.Margain + UI.ToolBarHeight,FRAME);
+		pWind->DrawRectangle(UI.Margain+10, UI.Margain+10, UI.Margain + UI.ToolBarHeight-10, UI.Margain + UI.ToolBarHeight-10,FILLED,10,10);
+	}
 }
 
 void Output::DrawGatesToolBar()
@@ -349,7 +402,7 @@ Output::Output()
 	UI.DrawColor = BLACK;
 	UI.SelectColor = BLUE;
 	UI.ConnColor = RED;
-	UI.MsgColor = BLUE;
+	UI.MsgColor = WHITE;
 	UI.BkGrndColor = WHITE;
 
 	//Create the drawing window
@@ -414,15 +467,16 @@ void Output::ChangeTitle(string Title) const
 //////////////////////////////////////////////////////////////////////////////////
 void Output::CreateStatusBar() const
 {
-	pWind->SetPen(RED, 3);
-	pWind->DrawLine(0, UI.height - UI.StatusBarHeight, UI.width, UI.height - UI.StatusBarHeight);
+	pWind->SetPen(BLACK, 3);
+	pWind->SetBrush(BLACK);
+	pWind->DrawRectangle(100,UI.height,100+UI.StatusBarWidth,UI.height-UI.StatusBarHeight,FILLED,5,5);
 }
 //////////////////////////////////////////////////////////////////////////////////
 void Output::PrintMsg(string msg) const
 {
 	ClearStatusBar();	//Clear Status bar to print message on it
 						// Set the Message offset from the Status Bar
-	int MsgX = 25;
+	int MsgX = 100+25;
 	int MsgY = UI.StatusBarHeight - 10;
 
 	// Print the Message
@@ -438,17 +492,18 @@ void Output::ClearStatusBar()const
 	int MsgY = UI.StatusBarHeight - 10;
 
 	//Overwrite using bachground color to erase the message
-	pWind->SetPen(UI.BkGrndColor);
-	pWind->SetBrush(UI.BkGrndColor);
-	pWind->DrawRectangle(MsgX, UI.height - MsgY, UI.width, UI.height);
+	pWind->SetPen(BLACK,3);
+	pWind->SetBrush(BLACK);
+	pWind->DrawRectangle(100, UI.height, 100 + UI.StatusBarWidth, UI.height - UI.StatusBarHeight, FILLED, 5, 5);
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Clears the drawing (degin) area
 void Output::ClearDrawingArea() const
 {
-	pWind->SetPen(RED, 1);
+	pWind->SetPen(WHITE, 1);
 	pWind->SetBrush(WHITE);
-	pWind->DrawRectangle(0, UI.ToolBarHeight, UI.width, UI.height - UI.StatusBarHeight);
+	pWind->DrawRectangle(UI.GateBarHeight, UI.ToolBarHeight, UI.width-UI.GateBarHeight, UI.height - UI.StatusBarHeight);
+	pWind->DrawRectangle(0,UI.ToolBarHeight+UI.Margain, UI.GateBarHeight, UI.height / 3);
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -456,39 +511,18 @@ void Output::ClearDrawingArea() const
 void Output::CreateDesignToolBar()
 {
 	UI.AppMode = DESIGN;	//Design Mode
-
-							//You can draw the tool bar icons in any way you want.
-
-	/*						First prepare List of images for each menu item
-	string MenuItemImages[ITM_DSN_CNT];
-	MenuItemImages[ITM_AND2] = "images\\Menu\\Menu_AND2.jpg";
-	MenuItemImages[ITM_OR2] = "images\\Menu\\Menu_OR2.jpg";
-	MenuItemImages[ITM_EXIT] = "images\\Menu\\Menu_Exit.jpg";
-
-	TODO: Prepare image for each menu item and add it to the list
-
-	Draw menu item one image at a time
-	for (int i = 0; i<ITM_DSN_CNT; i++)
-		pWind->DrawImage(MenuItemImages[i], i*UI.ToolItemWidth, 0, UI.ToolItemWidth, UI.ToolBarHeight);
-
-
-	Draw a line under the toolbar
-	pWind->SetPen(RED, 3);
-	pWind->DrawLine(0, UI.ToolBarHeight, UI.width, UI.ToolBarHeight);*/
+	pWind->SetBrush(WHITE);
+	pWind->SetPen(WHITE);
+	pWind->DrawRectangle(0, 0, UI.width, UI.height);
 	DrawToolBar();
-	DrawGatesToolBar();
-	DrawGatesBar();
-	DrawAndBar();
-	DrawOrBar();
-	DrawXorBar();
 
 }
 //////////////////////////////////////////////////////////////////////////////////////////
 //Draws the menu (toolbar) in the simulation mode
-void Output::CreateSimulationToolBar() const
+void Output::CreateSimulationToolBar() 
 {
 	UI.AppMode = SIMULATION;	//Simulation Mode
-
+	CreateSimulation();
 								//TODO: Write code to draw the simualtion toolbar (similar to that of design toolbar drawing)
 
 
@@ -891,5 +925,10 @@ void Output::DrawConnection(GraphicsInfo r_GfxInfo, bool selected) const
 
 Output::~Output()
 {
+	for (int i = 0; i < UI.GridHeight; i++)
+	{
+		delete[]Components[i];
+	}
+	delete[] Components;
 	delete pWind;
 }

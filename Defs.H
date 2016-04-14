@@ -6,6 +6,7 @@
 //All possible actions
 enum ActionType 
 {
+	NotYet,
 	ADD_Buff,			//Add 1-input Buffer gate
 	ADD_INV,			//Add 1-input Inverter gate
 	ADD_AND_GATE_2,		//Add 2-input AND gate
@@ -127,6 +128,7 @@ enum Cell
 	Connection = 2,
 	Gate = 3
 };
+
 #ifndef NULL
 #define NULL 0
 #endif

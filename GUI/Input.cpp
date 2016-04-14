@@ -47,39 +47,25 @@ string Input::GetSrting(Output* pOut)
 			}
 		}
 	} while ((int)cKeyData!=13);
+	pWind->SetPen(BLACK, 3);
+	pWind->DrawString(500, 500, str);
 	return str;
+	
 }
 
 
 
 //This function reads the position where the user clicks to determine the desired action
-ActionType Input::GetUserAction(ActionType old) const
+ActionType Input::GetUserAction(InterfaceX UN) const
 {	
 	int x,y;
 	pWind->WaitMouseClick(x, y);	//Get the coordinates of the user click
 
 	if (UI.AppMode == DESIGN)	//application is in design mode
 	{
-		////[1] If user clicks on the Toolbar
-		//if ( y >= 0 && y < UI.ToolBarHeight)
-		//{	
-		//	//Check whick Menu item was clicked
-		//	//==> This assumes that menu items are lined up horizontally <==
-		//	int ClickedItemOrder = (x / UI.ToolItemWidth);
-		//	//Divide x coord of the point clicked by the menu item width (int division)
-		//	//if division result is 0 ==> first item is clicked, if 1 ==> 2nd item and so on
-
-		//	switch (ClickedItemOrder)
-		//	{
-		//	case ITM_AND2: return ADD_AND_GATE_2;
-		//	case ITM_OR2: return ADD_OR_GATE_2;
-		//	case ITM_EXIT: return EXIT;	
-		//	
-		//	default: return DSN_TOOL;	//A click on empty place in desgin toolbar
-		//	}
-		if (y >= 0 && y <= UI.ToolBarHeight&&x >= 1.2*UI.width / 4 && x <= 1.2*UI.width / 4 + 7 * UI.ToolItemWidth)
+		if (y >= 0 && y <= UI.ToolBarHeight&&x >= 1.2*UI.width / 4 && x <= 1.2*UI.width / 4 + 7 * UI.ToolItemWidth && UN.ToolBar)
 		{
-			int ClickedItemOrder = x / UI.ToolItemWidth;
+			int ClickedItemOrder = ceil((x- 1.2*UI.width / 4.0) / UI.ToolItemWidth);
 			switch (ClickedItemOrder)
 			{
 			case 1:
@@ -107,9 +93,9 @@ ActionType Input::GetUserAction(ActionType old) const
 				break;
 			}
 		}
-		else if (x >= UI.GateBarHeight&&x <= UI.width&&y >= UI.height / 4 && y <= UI.height / 4 + 7 * UI.ToolItemWidth)
+		else if (x >= UI.GateBarHeight&&x <= UI.width&&y >= UI.height / 4 && y <= UI.height / 4 + 7 * UI.ToolItemWidth&&UN.GateBar)
 		{
-			int ClickedItemOrder = y / UI.ToolItemWidth;
+			int ClickedItemOrder = ceil((y - UI.height / 4.0) / UI.ToolItemWidth);
 			switch (ClickedItemOrder)
 			{
 			case 1:
@@ -140,8 +126,8 @@ ActionType Input::GetUserAction(ActionType old) const
 	}
 	 if (x >= 0 && x <= UI.GateBarHeight&&y >= UI.height / 3 && y <= UI.height / 3 + UI.ToolItemWidth * 7)
 	{
-		int ClickedItemCount = y / UI.ToolItemWidth;
-		if (old == ADD_AND)
+		int ClickedItemCount = ceil((y- UI.height / 3.0) / UI.ToolItemWidth);
+		if (UN.AndBar)
 		{
 			switch (ClickedItemCount)
 			{
@@ -161,7 +147,7 @@ ActionType Input::GetUserAction(ActionType old) const
 				break;
 			}
 		}
-		else if (old == ADD_OR)
+		else if (UN.OrBar)
 		{
 			switch (ClickedItemCount)
 			{
@@ -181,7 +167,7 @@ ActionType Input::GetUserAction(ActionType old) const
 				break;
 			}
 		}
-		else if (old == ADD_XOR)
+		else if (UN.XorBar)
 		{
 			switch (ClickedItemCount)
 			{
@@ -208,20 +194,15 @@ ActionType Input::GetUserAction(ActionType old) const
 	 }
 	 if (y >= UI.height&&y <= UI.height - UI.StatusBarHeight)
 		 return STATUS_BAR;
-	//	//[2] User clicks on the drawing area
-	//	if ( y >= UI.ToolBarHeight && y < UI.height - UI.StatusBarHeight)
-	//	{
-	//		return SELECT;	//user want to select/unselect a statement in the flowchart
-	//	}
-	//	
-	//	//[3] User clicks on the status bar
-	//	return STATUS_BAR;
-	//}
-	//else	//Application is in Simulation mode
-	//{
-	//	return SIM_MODE;	//This should be changed after creating the compelete simulation bar 
-	//}
-
+	 if (y >= UI.Margain&&y <= UI.Margain + UI.ToolBarHeight&&x >= UI.Margain&&x <= UI.Margain + UI.ToolBarHeight)
+	 {
+		 if (!UN.Simulation)
+		 {
+			 UN.Simulation = true;
+			 return SIM_MODE;
+		 }
+		 else return DSN_MODE;
+	 }
 }
 
 

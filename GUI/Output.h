@@ -21,14 +21,15 @@ private:
 	void Drawconnection();
 	//Auxillary functions to create the status bar
 	void DrawToolBar();
-	
+	void CreateSimulation();
+
 public:
 	Output(); // Performs the Window Initialization
 	Input* CreateInput() const; //creates a pointer to the Input object
 	void ChangeTitle(string Title) const;
 	bool connect(GraphicsInfo r_GfxInfo);
 	void CreateDesignToolBar();	//Tool bar of the design mode
-	void CreateSimulationToolBar() const;//Tool bar of the simulation mode
+	void CreateSimulationToolBar();//Tool bar of the simulation mode
 	void CreateStatusBar() const;	//Create Status bar
 
 	void ClearStatusBar() const;		//Clears the status bar
@@ -42,6 +43,8 @@ public:
 	void DrawOrBar();
 	void DrawXorBar();
 	void EraseToolBar();
+	void CreateSimulationBar();
+	void SimulationIcon(bool SIMU);
 	// Draws 2-input AND gate
 	void DrawAND(GraphicsInfo r_GfxInfo, bool selected = false, bool invert = false, bool connections = false) const;
 	void DrawAND2(GraphicsInfo r_GfxInfo, bool selected = false);
@@ -63,6 +66,7 @@ public:
 	void DrawInverter(GraphicsInfo r_GfxInfo, bool selected = false);
 	void DrawSwitch(GraphicsInfo r_GfxInfo, bool = false, bool = false);
 	void DrawLED(GraphicsInfo r_GfxInfo, bool selected = false, bool ON = false) const;
+	
 	///TODO: Make similar functions for drawing all other gates, switch, and LED, .. etc
 
 	// Draws Connection
